@@ -1,0 +1,17 @@
+# Path: /etc/grub.d/40_custom
+# sudo os-prober: /EFI/Microsoft/Boot/bootmgfw.efi
+
+menuentry "Windows 10" --class windows {
+        search --set=root --file /EFI/Microsoft/Boot/bootmgfw.efi
+        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}
+
+menuentry "Shutdown" --class shutdown {
+        echo "System shutting down..."
+        halt
+}
+
+menuentry "Restart" --class restart {
+        echo "System rebooting..."
+        reboot
+}

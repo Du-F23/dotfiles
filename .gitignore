@@ -1,0 +1,11 @@
+# Ignore all
+/*
+
+# Files
+!.gitignore
+!README.md
+!.zshrc
+
+# Folders
+!.config
+!.resources

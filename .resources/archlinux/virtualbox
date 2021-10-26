@@ -1,0 +1,9 @@
+# VirtualBox Dark Theme
+pacman -S qt5-base
+yay -S qt5-styleplugins adwaita-qt
+
+# Edit virtualbox.desktop
+cd /usr/share/applications
+
+# Add/Replace Exec=VirtualBox %U
+Exec=VirtualBox -style Adwaita-Dark %U

@@ -1,0 +1,16 @@
+--==[ Panel ]==--
+Row size: 20
+Background alpha: 40
+Fixed icon size: 14
+Whisker Menu Opacy: 85
+Amount of items: 10
+
+--==[ Terminal ]==--
+Background alpha: 80
+Default geometry: 125
+Columns: 33
+
+--==[ Plank ]==--
+Theme: Transparent
+Icon Size: 34
+Icon Zoom: 130

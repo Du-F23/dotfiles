@@ -1,0 +1,10 @@
+# Ignore all
+/*
+
+# Files
+!.gitignore
+!coc-settings.json
+!init.vim
+
+# Folders
+!sources

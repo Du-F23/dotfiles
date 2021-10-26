@@ -1,0 +1,9 @@
+# Ignore all
+/*
+
+# Files
+!.gitignore
+!.extension
+
+# Folders
+!ultisnips

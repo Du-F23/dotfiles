@@ -1,0 +1,21 @@
+{
+	"normal": "#0f101a",
+	"border": "#d3a7ee",
+
+	"active": "#f07178",
+	"inactive": "#5e5e5e",
+	"focus": "#111111",
+
+	"center": "#000000",
+	"base1": "#111111",
+	"base2": "#000000",
+	"base3": "#111111",
+	"base4": "#000000",
+	"base5": "#111111",
+	
+	"text": "#c5c9de",
+	"color1": "#d3a7ee",
+	"color2": "#93bbff",
+	"color3": "#ffd47e",
+	"color4": "#cdea9f"
+}

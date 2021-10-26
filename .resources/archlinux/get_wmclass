@@ -1,0 +1,5 @@
+# Get WM_CLASS
+xprop | grep WM_CLASS | awk '{print $4}'
+
+# or
+xprop WM_CLASS

@@ -1,0 +1,7 @@
+configuration {
+	modi: "window,run,ssh,combi,drun";
+	font: "UbuntuMono Nerd Font 10";
+	theme: "~/.config/rofi/themes/custom.css";
+	show-icons: true;
+	icon-theme: "Papirus";
+}

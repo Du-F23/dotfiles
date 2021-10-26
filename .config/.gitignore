@@ -1,0 +1,20 @@
+# Ignore all
+/*
+
+# Files
+!.gitignore
+!README.md
+
+# Folders
+!alacritty
+!bat
+!bspwm
+!coc
+!neofetch
+!nvim
+!picom
+!pulse
+!pulseaudio-ctl
+!qtile
+!rofi
+!sxhkd
