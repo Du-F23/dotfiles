@@ -1,84 +1,108 @@
-## Resources
-*Scripts, software, commands, packages, etc...*
+## Packages
 
-## After Install Arch Linux
-- AMD Drivers
-  - [xf86-video-amdgpu](https://archlinux.org/packages/extra/x86_64/xf86-video-amdgpu/)
-  - [amd-ucode](https://archlinux.org/packages/core/any/amd-ucode/)
-  - [xf86-video-ati](https://archlinux.org/packages/extra/x86_64/xf86-video-ati/)
+> ### Installation
+>
+> Most of the packages are in the Official Arch Repositories, so they should be installed with pacman.
+> 
+> Those packages that are marked with an "*" are because they are in the User Repositories (AUR), in this case they must be installed with yay or paru.
+> 
+> Note: packages containing a link require additional configuration.
 
-- bspwm
-  - [bspwm](https://archlinux.org/packages/community/x86_64/bspwm/)
-  - [sxhkd](https://archlinux.org/packages/community/x86_64/sxhkd/)
-    - [bspwm Setup](https://wiki.archlinux.org/title/Bspwm)
+#### Hardware
 
-- Qtile
-  - [qtile](https://archlinux.org/packages/community/x86_64/qtile/)
-  - [python-setuptools](https://archlinux.org/packages/extra/any/python-setuptools/)
-  - [python-psutil](https://archlinux.org/packages/community/x86_64/python-psutil/)
-  - [python-iwlib](https://archlinux.org/packages/community/x86_64/python-iwlib/)
+- [pulseaudio](https://wiki.archlinux.org/title/PulseAudio#Running)
+  - *pulseaudio-ctl
+- brightnessctl
+- playerctl
+- openssh
+- time
+- ntp
 
-- Packages
-  - [alacritty](https://archlinux.org/packages/community/x86_64/alacritty/)
-  - [lightdm](https://archlinux.org/packages/extra/x86_64/lightdm/)
-  - [lightdm-gtk-greeter](https://archlinux.org/packages/extra/x86_64/lightdm-gtk-greeter/)
-    - [LightDM Setup](https://wiki.archlinux.org/title/LightDM#Greeter)
-  - [neofetch](https://archlinux.org/packages/community/any/neofetch/)
-  - [picom](https://archlinux.org/packages/community/x86_64/picom/)
-  - [feh](https://archlinux.org/packages/extra/x86_64/feh/)
-  - [rofi](https://archlinux.org/packages/community/x86_64/rofi/)
-  - [papirus-icon-theme](https://archlinux.org/packages/community/any/papirus-icon-theme/)
-  - [htop](https://archlinux.org/packages/extra/x86_64/htop/)
-  - [zsh](https://archlinux.org/packages/extra/x86_64/zsh/)
-  - [zsh-autosuggestions](https://archlinux.org/packages/community/any/zsh-autosuggestions/)
-  - [zsh-syntax-highlighting](https://archlinux.org/packages/community/any/zsh-syntax-highlighting/)
-    - [Zsh Setup](https://wiki.archlinux.org/title/Zsh#Making_Zsh_your_default_shell)
+#### Window Manager
 
-- Desktop
-  - [firefox](https://archlinux.org/packages/extra/x86_64/firefox/)
-  - [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop/)
-  - [opera](https://archlinux.org/packages/community/x86_64/opera/)
-  - [opera-ffmpeg-codecs](https://archlinux.org/packages/community/x86_64/opera-ffmpeg-codecs/)
-  - [gnome-screenshot](https://archlinux.org/packages/extra/x86_64/gnome-screenshot/)
-  - [lxappearance](https://archlinux.org/packages/community/x86_64/lxappearance/)
-  - [libreoffice-fresh](https://archlinux.org/packages/extra/x86_64/libreoffice-fresh/)
-  - [gpicview](https://archlinux.org/packages/community/x86_64/gpicview/)
-  - [thunar](https://archlinux.org/packages/extra/x86_64/thunar/)
-  - [thunar-volman](https://archlinux.org/packages/extra/x86_64/thunar-volman/)
-  - [vlc](https://archlinux.org/packages/extra/x86_64/vlc/)
+- [bspwm](https://wiki.archlinux.org/title/Bspwm)
+  - sxhkd
+- qtile
+  - python-setuptools
+  - python-psutil
+  - python-iwlib
 
-- Hardware
-  - [ntp](https://archlinux.org/packages/extra/x86_64/ntp/)
-  - [brightnessctl](https://archlinux.org/packages/community/x86_64/brightnessctl/)
-  - [playerctl](https://archlinux.org/packages/community/x86_64/playerctl/)
-  - [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/)
-    - Enable it: `systemctl --user enable pulseaudio`
-  - [yay -S pulseaudio-ctl](https://aur.archlinux.org/packages/pulseaudio-ctl/)
+#### Display Manager
 
-- Neovim
-  - [neovim](https://archlinux.org/packages/community/x86_64/neovim/)
-  - [yay -S neovim-plug-git](https://aur.archlinux.org/packages/neovim-plug-git)
-  - [nodejs](https://archlinux.org/packages/community/x86_64/nodejs/)
-  - [yarn](https://archlinux.org/packages/community/any/yarn/)
-  - [python-pynvim](https://archlinux.org/packages/community/any/python-pynvim/)
+- [lightdm:](https://wiki.archlinux.org/title/LightDM#Greeter)
+  - lightdm-gtk-greeter
 
-- Fonts
-  - [nerd-fonts-ubuntu-mono](https://aur.archlinux.org/packages/nerd-fonts-ubuntu-mono)
-  - [nerd-fonts-mononoki](https://aur.archlinux.org/packages/nerd-fonts-mononoki)
+#### Terminal & Shell
 
-- Yay
-  - [visual-studio-code-bin](https://aur.archlinux.org/packages/visual-studio-code-bin)
-  - [update-grub](https://aur.archlinux.org/packages/update-grub/)
-  - [evince-no-gnome](https://aur.archlinux.org/packages/evince-no-gnome/)
-  - [whatsapp-nativefier](https://aur.archlinux.org/packages/whatsapp-nativefier/)
+- alacritty
+- [zsh](https://wiki.archlinux.org/title/Zsh#Making_Zsh_your_default_shell)
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - *gitstatus
+  - exa
+  - bat
 
-- VirtualBox
-  - [virtualbox](https://archlinux.org/packages/community/x86_64/virtualbox/)
-  - [virtualbox-host-modules-arch](https://archlinux.org/packages/community/x86_64/virtualbox-host-modules-arch/)
-  - [virtualbox-guest-iso](https://archlinux.org/packages/community/any/virtualbox-guest-iso/)
-  - Setup:
-```
-sudo modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
-sudo nano /etc/modules-load.d/virtualbox.conf
-sudo gpasswd -a $USER vboxusers
-```
+#### System Utilities
+
+- picom
+- feh
+- rofi
+  - papirus-icon-theme
+- *update-grub
+- neofetch
+  - lolcat
+- htop
+
+#### Code Editor
+
+- neovim
+  - *neovim-plug-git
+  - nodejs
+  - yarn
+  - python-pynvim
+- *visual-studio-code-bin
+
+#### Fonts
+
+- *nerd-fonts-mononoki
+- *nerd-fonts-ubuntu-mono
+- gnu-free-fonts
+- noto-fonts
+
+#### File Manager
+
+- thunar
+  - thunar-volman
+
+#### Browser
+
+- firefox
+- opera
+  - opera-ffmpeg-codecs
+
+#### Social Media
+
+- telegram-desktop
+- *whatsapp-nativefier
+
+#### Desktop
+
+- lxappearance
+- gnome-screenshot
+- gpicview
+- vlc
+- *evince-no-gnome
+- libreoffice-fresh
+
+#### Hypervisor
+
+- [virtualbox](https://wiki.archlinux.org/title/VirtualBox#Installation_steps_for_Arch_Linux_hosts)
+  - virtualbox-host-modules-arch
+  - virtualbox-guest-iso
+
+#### Drivers
+
+- [For AMD](https://wiki.archlinux.org/title/AMDGPU)
+  - xf86-video-amdgpu
+  - xf86-video-ati
+  - amd-ucode
