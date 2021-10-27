@@ -1,3 +1,8 @@
+# Setup
+sudo modprobe vboxdrv vboxnetadp vboxnetflt vboxpci
+sudo nano /etc/modules-load.d/virtualbox.conf
+sudo gpasswd -a $USER vboxusers
+
 # VirtualBox Dark Theme
 pacman -S qt5-base
 yay -S qt5-styleplugins adwaita-qt
