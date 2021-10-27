@@ -4,7 +4,7 @@
 >
 > Most of the packages are in the Official Arch Repositories, so they should be installed with pacman.
 > 
-> Those packages that are marked with an "*" are because they are in the User Repositories (AUR), in this case they must be installed with yay or paru.
+> Those packages that are marked with an "*", are not available in the official repositories, but they are in AUR (Arch User Repository), in this case they must be installed with yay or paru.
 > 
 > Note: packages containing a link require additional configuration.
 
