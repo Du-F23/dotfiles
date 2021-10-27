@@ -55,7 +55,7 @@ pacstrap /mnt base base-devel efibootmgr os-prober grub networkmanager dhcp ntfs
 ```
 
 9. Install additional packages
--  WIFI drivers:
+- WIFI drivers:
 ```
 pacstrap /mnt netctl wpa_supplicant dialog
 ```

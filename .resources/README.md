@@ -29,7 +29,7 @@
 
 #### Display Manager
 
-- [lightdm:](https://wiki.archlinux.org/title/LightDM#Greeter)
+- [lightdm](https://wiki.archlinux.org/title/LightDM#Greeter)
   - lightdm-gtk-greeter
 
 #### Terminal & Shell
