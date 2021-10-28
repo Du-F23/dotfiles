@@ -12,6 +12,9 @@ autostart = [
 
     # Compositor
     'picom &',
+
+    # Screensaver
+    'xset -dpms s off',
 ]
 
 for x in autostart:
