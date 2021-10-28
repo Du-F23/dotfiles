@@ -4,6 +4,7 @@
 setxkbmap latam
 feh --bg-fill ~/wallpapers/landscape_wp2.jpg
 picom &
+xset -dpms s off
 wmname LG3D &
 
 # --==[ Settings ]==--
