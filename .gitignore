@@ -6,6 +6,8 @@
 !.gitmodules
 !README.md
 !.zshrc
+!.bash_profile
+!.bashrc
 
 # Folders
 !.config
