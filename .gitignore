@@ -3,9 +3,11 @@
 
 # Files
 !.gitignore
+!.gitmodules
 !README.md
 !.zshrc
 
 # Folders
 !.config
 !.resources
+!.suckless
