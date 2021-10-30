@@ -1,3 +1,4 @@
 [submodule ".suckless/dmenu"]
 	path = .suckless/dmenu
 	url = https://github.com/jx11r/dmenu
+	branch = master
