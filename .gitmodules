@@ -1,4 +1,0 @@
-[submodule ".suckless/dmenu"]
-	path = .suckless/dmenu
-	url = ssh://git@github.com:jx11r/dmenu.git
-	branch = master
