@@ -18,7 +18,7 @@ screens = [
             margin=0,
 
             # Transparency
-            opacity=0.8,
+            opacity=0.85,
         ),
     ),
 ]
