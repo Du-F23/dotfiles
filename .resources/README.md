@@ -31,10 +31,12 @@
 
 - [lightdm](https://wiki.archlinux.org/title/LightDM#Greeter)
   - lightdm-gtk-greeter
+- *ly
 
 #### Terminal & Shell
 
 - alacritty
+- xterm
 - [zsh](https://wiki.archlinux.org/title/Zsh#Making_Zsh_your_default_shell)
   - zsh-autosuggestions
   - zsh-syntax-highlighting
@@ -46,6 +48,7 @@
 
 - picom
 - feh
+- sxiv
 - rofi
   - papirus-icon-theme
 - *update-grub
@@ -66,6 +69,8 @@
 
 - *nerd-fonts-mononoki
 - *nerd-fonts-ubuntu-mono
+- *nerd-fonts-go-mono
+- *nerd-fonts-hack
 - gnu-free-fonts
 - noto-fonts
 
@@ -73,6 +78,7 @@
 
 - thunar
   - thunar-volman
+- pcmanfm
 
 #### Browser
 

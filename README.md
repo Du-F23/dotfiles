@@ -55,7 +55,7 @@ pacstrap /mnt base base-devel efibootmgr os-prober grub networkmanager dhcp ntfs
 ```
 
 9. Install additional packages
-- WIFI drivers:
+- WIFI drivers
 ```
 pacstrap /mnt netctl wpa_supplicant dialog
 ```
@@ -129,11 +129,17 @@ reboot
 sudo pacman -S git xorg
 ```
 
-19. Install Yay
-    - `cd /opt`
-    - `git clone https://aur.archlinux.org/yay.git`
-    - `cd yay`
-    - `makepkg -si`
+19. Install AUR Helper
+	- Paru (in Rust)
+	  - `cd /opt`
+      - `git clone https://aur.archlinux.org/paru.git`
+      - `cd paru`
+      - `makepkg -si`
+	- Yay (in Go)
+	  - `cd /opt`
+      - `git clone https://aur.archlinux.org/yay.git`
+      - `cd yay`
+      - `makepkg -si`
 
-20. Official installation guide
+21. Official installation guide
     - [archlinux.org](https://wiki.archlinux.org/title/Installation_guide)
