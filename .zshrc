@@ -13,11 +13,11 @@ setopt appendhistory
 
 # --==[ Alias ]==--
 # System
-alias cd..="cd .."
-alias c="clear"
-alias tar="tar -xf"
-alias dload="curl -O"
-alias grep="grep --color=auto"
+alias cd..='cd ..'
+alias c='clear'
+alias tar='tar -xf'
+alias dload='curl -O'
+alias grep='grep --color=auto'
 
 # Files
 alias ls='exa --group-directories-first'
@@ -26,7 +26,7 @@ alias tree='exa -T'
 
 # Development
 alias cat='bat'
-alias vim="nvim"
+alias vim='nvim'
 
 # Info
 alias fetch='neofetch | lolcat'
