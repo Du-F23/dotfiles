@@ -141,5 +141,5 @@ sudo pacman -S git xorg
       - `cd yay`
       - `makepkg -si`
 
-21. Official installation guide
+20. Official installation guide
     - [archlinux.org](https://wiki.archlinux.org/title/Installation_guide)
