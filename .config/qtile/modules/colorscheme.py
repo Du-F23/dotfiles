@@ -1,4 +1,4 @@
-# --==[ Colorschemes ]==--
+# --==[ Color Schemes ]==--
 
 import json
 from .settings import theme_path

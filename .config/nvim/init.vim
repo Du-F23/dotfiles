@@ -22,7 +22,7 @@ so $path/polygot.vim
 " Plugins
 so $path/vim-plug.vim
 
-" Colorschemes
+" Color Schemes
 so $path/colorscheme.vim
 
 " Treesitter
