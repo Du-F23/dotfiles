@@ -16,6 +16,7 @@ setopt appendhistory
 alias cd..="cd .."
 alias c="clear"
 alias tar="tar -xf"
+alias dload="curl -O"
 alias grep="grep --color=auto"
 
 # Files
