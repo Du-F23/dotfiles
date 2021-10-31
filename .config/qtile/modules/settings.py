@@ -23,11 +23,11 @@ interface = 'wlp2s0'
 backlight = 'radeon_bl0'
 
 # Themes
-theme = 'material_ocean.json'
+theme = 'material_ocean_dark.json'
 directory = path.join(path.expanduser('~'), ".config/qtile/colorschemes/")
 theme_path = directory + theme
 
 # Wallpapers
-img = 'minimalist_wp.jpg'
+img = 'landscape_wp4.jpg'
 folder = '~/wallpapers/'
 wallpaper = folder + img

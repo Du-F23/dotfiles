@@ -9,7 +9,7 @@ from .settings import font, fontsize, interface, backlight
 widget_defaults = dict(
     font=font,
     fontsize=fontsize,
-    padding=3,
+    padding=4,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -22,8 +22,8 @@ def base(bg, txt):
 
 def triangle(icon):
     return {
-        'fontsize': 24,
-        'padding': -2,
+        'fontsize': 37,
+        'padding': -3,
         'text': icon,
     }
 
@@ -42,7 +42,7 @@ def right(bg, txt):
 def icon(bg, txt, icon):
     return widget.TextBox(
         **base(bg, txt),
-        fontsize=12,
+        fontsize=13,
         padding=3,
         text=icon,
     )
@@ -53,7 +53,7 @@ def distro(bg, txt):
         widget.TextBox(
             **base(bg, txt),
             text="  ",
-            fontsize=12,
+            fontsize=13,
         ),
     ]
 
@@ -69,7 +69,7 @@ def net(bg, txt):
             **base(bg, txt),
             interface=interface,
             use_bits=True,
-            format='{down} ↓↑{up}',
+            format='{down} {up}',
         ),
         icon(bg, txt, ' '),
     ]
@@ -104,8 +104,11 @@ def groups(bg):
     return [
         widget.Spacer(background=bg),
         widget.GroupBox(
-            highlight_method='block',
-            fontsize=14,
+            highlight_method='line',
+            highlight_color=[bg, bg],
+            block_highlight_text_color=hex['focus'],
+            borderwidth=2,
+            fontsize=17,
             margin_x=0,
             padding_x=-1,
             rounded=False,
@@ -144,7 +147,7 @@ def harddisk(bg, txt):
         widget.DF(
             **base(bg, txt),
             visible_on_warn=False,
-            format='Usage: {r:.2f}%',
+            format='Hard Disk: {r:.0f}%',
         ),
     ]
 
@@ -164,7 +167,7 @@ def close(bg, txt):
             countdown_format='{}  ',
             countdown_start=5,
             default_text='襤  ',
-            fontsize=12,
+            fontsize=13,
         ),
     ]
 

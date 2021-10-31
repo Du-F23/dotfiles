@@ -8,17 +8,17 @@ from .widgets import widgets
 screens = [
     Screen(
         top=bar.Bar(
-            # Import from widgets.py
+            # Source in widgets.py
             widgets,
             
             # Size
-            15,
+            20,
 
             # Margin
             margin=0,
 
             # Transparency
-            opacity=1,
+            opacity=0.8,
         ),
     ),
 ]
