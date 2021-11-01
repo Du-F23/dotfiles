@@ -11,10 +11,11 @@
 !bspwm
 !coc
 !neofetch
-!nvim
+# !nvim
 !picom
 !pulse
 !pulseaudio-ctl
 !qtile
 !rofi
 !sxhkd
+!vimscript
