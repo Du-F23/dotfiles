@@ -31,6 +31,7 @@
 
 - [lightdm](https://wiki.archlinux.org/title/LightDM#Greeter)
   - lightdm-gtk-greeter
+- sddm
 - *ly
 
 #### Terminal & Shell
@@ -58,6 +59,7 @@
 
 #### Code Editor
 
+- vim
 - neovim
   - *neovim-plug-git
   - nodejs
