@@ -33,6 +33,9 @@ keys = [
     # Terminal
     Key([mod], 'Return', lazy.spawn(terminal)),
 
+    # Dmenu
+    Key([mod], 'a', lazy.spawn('dmenu_run')),
+
     # Menu
     Key([mod], 'm', lazy.spawn('rofi -show drun')),
     Key([mod, 'shift'], 'm', lazy.spawn('rofi -show')),
