@@ -1,0 +1,9 @@
+# Ignore all
+/*
+
+# Files
+!.gitignore
+!init.lua
+
+# Folders
+!lua
