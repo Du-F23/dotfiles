@@ -59,52 +59,52 @@ source /usr/share/gitstatus/gitstatus.prompt.zsh
 
 # --==[ Prompt + Git ]==--
 function set_prompt() {
-	declare -A vcs_status
-		vcs_status[0]=$VCS_STATUS_COMMITS_BEHIND
-		vcs_status[1]=$VCS_STATUS_COMMITS_AHEAD
-		vcs_status[2]=$VCS_STATUS_STASHES
-		vcs_status[3]=$VCS_STATUS_NUM_CONFLICTED
-		vcs_status[4]=$VCS_STATUS_NUM_STAGED
-		vcs_status[5]=$VCS_STATUS_NUM_UNSTAGED
-		vcs_status[6]=$VCS_STATUS_NUM_UNTRACKED
+    declare -A vcs_status
+        vcs_status[0]=$VCS_STATUS_COMMITS_BEHIND
+        vcs_status[1]=$VCS_STATUS_COMMITS_AHEAD
+        vcs_status[2]=$VCS_STATUS_STASHES
+        vcs_status[3]=$VCS_STATUS_NUM_CONFLICTED
+        vcs_status[4]=$VCS_STATUS_NUM_STAGED
+        vcs_status[5]=$VCS_STATUS_NUM_UNSTAGED
+        vcs_status[6]=$VCS_STATUS_NUM_UNTRACKED
+
+    let x=0;
+
+    for i in ${vcs_status[@]}
+    do
+        if [[ $i != 0 ]]; then
+            let x=1;
+        fi
+    done
+
+    PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}(%1d)%f '
 	
-	let x=0;
+    if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+        PROMPT+='%F{magenta} '
+        PROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
+        PROMPT+='%f '
 
-	for i in ${vcs_status[@]}
-	do
-		if [[ $i != 0 ]]; then
-			let x=1;
-		fi
-	done
+        if [[ $x != 0 ]]; then
+            PROMPT+='%F{red}['
+        fi
 
-	PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}(%1d)%f '
-	
-	if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
-		PROMPT+='%F{magenta} '
-		PROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
-		PROMPT+='%f '
+        (( VCS_STATUS_COMMITS_BEHIND )) && PROMPT+=''
+        (( VCS_STATUS_COMMITS_AHEAD  )) && PROMPT+=''
+        (( VCS_STATUS_STASHES        )) && PROMPT+='*'
+        (( VCS_STATUS_NUM_CONFLICTED )) && PROMPT+='~'
+        (( VCS_STATUS_NUM_STAGED     )) && PROMPT+='+'
+        (( VCS_STATUS_NUM_UNSTAGED   )) && PROMPT+='!'
+        (( VCS_STATUS_NUM_UNTRACKED  )) && PROMPT+='?'
 
-		if [[ $x != 0 ]]; then
-			PROMPT+='%F{red}['
-		fi
+        if [[ $x != 0 ]]; then
+            PROMPT+=']%f'
+        fi
+    fi
 
-		(( VCS_STATUS_COMMITS_BEHIND )) && PROMPT+=''
-		(( VCS_STATUS_COMMITS_AHEAD  )) && PROMPT+=''
-		(( VCS_STATUS_STASHES        )) && PROMPT+='*'
-		(( VCS_STATUS_NUM_CONFLICTED )) && PROMPT+='~'
-		(( VCS_STATUS_NUM_STAGED     )) && PROMPT+='+'
-		(( VCS_STATUS_NUM_UNSTAGED   )) && PROMPT+='!'
-		(( VCS_STATUS_NUM_UNTRACKED  )) && PROMPT+='?'
+    PROMPT+=$'\n'
+    PROMPT+='%b%F{yellow} ﬌%f '
 
-		if [[ $x != 0 ]]; then
-			PROMPT+=']%f'
-		fi
-	fi
-
-	PROMPT+=$'\n'
-	PROMPT+='%b%F{yellow} ﬌%f '
-
-	setopt no_prompt_{bang,subst} prompt_percent
+    setopt no_prompt_{bang,subst} prompt_percent
 }
 
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
