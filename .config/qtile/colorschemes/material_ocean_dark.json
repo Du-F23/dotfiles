@@ -1,21 +1,21 @@
 {
-	"normal": "#0f101a",
-	"border": "#d3a7ee",
+    "normal": "#0f101a",
+    "border": "#d3a7ee",
 
-	"active": "#f07178",
-	"inactive": "#5e5e5e",
-	"focus": "#d3a7ee",
+    "active": "#f07178",
+    "inactive": "#5e5e5e",
+    "focus": "#d3a7ee",
 
-	"center": "#0f101a",
-	"base1": "#0f101a",
-	"base2": "#0f101a",
-	"base3": "#0f101a",
-	"base4": "#0f101a",
-	"base5": "#0f101a",
-	
-	"text": "#c5c9de",
-	"color1": "#d3a7ee",
-	"color2": "#93bbff",
-	"color3": "#ffd47e",
-	"color4": "#cdea9f"
+    "center": "#0f101a",
+    "base1": "#0f101a",
+    "base2": "#0f101a",
+    "base3": "#0f101a",
+    "base4": "#0f101a",
+    "base5": "#0f101a",
+
+    "text": "#c5c9de",
+    "color1": "#d3a7ee",
+    "color2": "#93bbff",
+    "color3": "#ffd47e",
+    "color4": "#cdea9f"
 }
