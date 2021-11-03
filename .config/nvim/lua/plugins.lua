@@ -19,7 +19,6 @@ return require('packer').startup(function()
     -- Lualine
     use {
         'nvim-lualine/lualine.nvim',
-        after = 'nvim-treesitter',
         requires = {
             'kyazdani42/nvim-web-devicons',
             opt = true
@@ -32,4 +31,7 @@ return require('packer').startup(function()
         requires = 'kyazdani42/nvim-web-devicons',
         config = function() require'nvim-tree'.setup {} end
     }
+
+    -- Colorizer
+    use 'norcalli/nvim-colorizer.lua'
 end)
