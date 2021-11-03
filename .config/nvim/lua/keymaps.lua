@@ -2,19 +2,19 @@
 
 -- Set new keymap
 local map = function(key)
-	local opts = {noremap = true}
-	for i, v in pairs(key) do
-		if type(i) == 'string' then
-			opts[i] = v
-		end
-	end
+    local opts = {noremap = true}
+    for i, v in pairs(key) do
+        if type(i) == 'string' then
+            opts[i] = v
+        end
+    end
 
-	vim.api.nvim_set_keymap(
-		key[1],
-		key[2],
-		key[3],
-		opts
-	)
+    vim.api.nvim_set_keymap(
+        key[1],
+        key[2],
+        key[3],
+        opts
+    )
 end
 
 -- Leader Key
