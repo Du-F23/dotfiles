@@ -2,7 +2,7 @@
 
 return require('packer').startup(function()
 	-- Performance
-	-- use 'dstein64/vim-startuptime'
+	use 'dstein64/vim-startuptime'
 
 	-- Color Schemes
 	use 'marko-cerovac/material.nvim'
@@ -19,9 +19,17 @@ return require('packer').startup(function()
 	-- Lualine
 	use {
 		'nvim-lualine/lualine.nvim',
+        after = 'nvim-treesitter',
 		requires = {
 			'kyazdani42/nvim-web-devicons',
 			opt = true
 		}
 	}
+
+    -- Nvim Tree
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {} end
+    }
 end)

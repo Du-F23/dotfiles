@@ -21,8 +21,14 @@ end
 vim.g.mapleader = ' '
 
 -- Save & Quit
-map{'n', '<Leader>w', ':w<cr>'}
-map{'n', '<Leader>q', ':q<cr>'}
+map{'n', '<leader>w', ':w<cr>'}
+map{'n', '<leader>q', ':q<cr>'}
 
 -- Reload
-map{'n', '<Leader>r', ':source %'}
+map{'n', '<leader>r', ':source %'}
+
+-- Enable IDE options
+map{'n', '<leader>e', ':lua require("ide")<cr>'}
+
+-- Neovim Tree
+map{'n', '<C-n>', ':NvimTreeToggle<cr>'}
