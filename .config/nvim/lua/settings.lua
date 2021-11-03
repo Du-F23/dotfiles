@@ -1,6 +1,5 @@
 --==[ Settings ]==--
 local set = vim.opt
-local g = vim.g
 
 -- Performance
 set.lazyredraw = true
@@ -37,7 +36,7 @@ set.swapfile = false
 
 -- Interface
 set.number = true
-set.relativenumber = false
+set.relativenumber = true
 set.hidden = true
 set.showmode = false
 set.showcmd = true
