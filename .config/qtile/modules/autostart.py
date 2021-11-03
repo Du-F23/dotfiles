@@ -5,7 +5,7 @@ from .settings import wallpaper
 
 autostart = [
     # Keyboard layout
-	'setxkbmap latam',
+    'setxkbmap latam',
 
     # Wallpaper
     'feh --bg-fill ' + wallpaper,
@@ -18,4 +18,4 @@ autostart = [
 ]
 
 for x in autostart:
-	os.system(x)
+    os.system(x)
