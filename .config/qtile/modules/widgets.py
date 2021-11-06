@@ -107,7 +107,7 @@ def groups(bg):
             highlight_method='line',
             highlight_color=[bg, bg],
             block_highlight_text_color=hex['focus'],
-            borderwidth=2,
+            borderwidth=1,
             fontsize=17,
             margin_x=0,
             padding_x=-1,
