@@ -1,8 +1,5 @@
 --==[ Tree ]==--
 
--- Additional Options
-vim.opt.termguicolors = true
-
 -- Config
 require'nvim-tree'.setup {
     disable_netrw       = true,

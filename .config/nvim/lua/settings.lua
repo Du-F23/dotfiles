@@ -40,6 +40,7 @@ set.relativenumber = true
 set.hidden = true
 set.showmode = false
 set.showcmd = true
+set.termguicolors = true
 
 -- Mouse Support
 set.mouse = 'i'
