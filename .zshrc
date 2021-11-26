@@ -70,17 +70,16 @@ function set_prompt() {
 
     let x=0;
 
-    for i in ${vcs_status[@]}
-    do
+    for i in ${vcs_status[@]}; do
         if [[ $i != 0 ]]; then
             let x=1;
         fi
     done
 
-    PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}(%1d)%f '
+    PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}%1d%f '
 	
     if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
-        PROMPT+='%F{magenta} '
+        PROMPT+='on %F{magenta} '
         PROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
         PROMPT+='%f '
 
