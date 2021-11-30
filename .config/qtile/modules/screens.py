@@ -11,8 +11,11 @@ screens = [
             # Source in widgets.py
             widgets,
             
-            # Size
+            # Bar Size
             20,
+
+            # Background Color
+            background="#00000000",
 
             # Margin
             margin=0,

@@ -28,6 +28,6 @@ directory = path.join(path.expanduser('~'), ".config/qtile/colorschemes/")
 theme_path = directory + theme
 
 # Wallpapers
-img = 'landscape_wp4.jpg'
+img = 'abstract_wp1.jpg'
 folder = '~/wallpapers/'
 wallpaper = folder + img
