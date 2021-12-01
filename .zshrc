@@ -29,7 +29,7 @@ alias cat='bat'
 alias vim='nvim'
 
 # Info
-alias fetch='neofetch | lolcat'
+alias fetch='neofetch'
 alias usage='du -sh'
 
 # --==[ Autocomplete ]==--
@@ -79,7 +79,7 @@ function set_prompt() {
     PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}%1d%f '
 	
     if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
-        PROMPT+='on %F{magenta} '
+        PROMPT+='%bon%B %F{magenta} '
         PROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
         PROMPT+='%f '
 
@@ -144,7 +144,7 @@ bindkey '^L' clear-screen                          # ctrl + l
 # https://linux.die.net/man/1/zshzle
 
 # --==[ Autostart ]==--
-# neofetch | lolcat
+# neofetch
 
 # --==[ Performance ]==--
 # /usr/bin/time zsh -i -c exit
