@@ -76,7 +76,7 @@ function set_prompt() {
         fi
     done
 
-    PROMPT='%B%F{green}%n%f %F{yellow}%f %F{blue}%1d%f '
+    PROMPT='%B%F{green}%n%f%F{yellow}:%f%F{blue}[%1d]%f '
 	
     if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
         PROMPT+='%bon%B %F{magenta} '
