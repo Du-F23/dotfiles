@@ -38,5 +38,5 @@ floating_layout = layout.Floating(
     ],
     border_normal=hex['normal'],
     border_focus=hex['border'],
-    border_width=1,
+    border_width=0,
 )
