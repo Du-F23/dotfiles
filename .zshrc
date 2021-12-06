@@ -143,6 +143,9 @@ bindkey '^L' clear-screen                          # ctrl + l
 # - Source
 # https://linux.die.net/man/1/zshzle
 
+# --==[ Exports ]==--
+export PATH="${PATH}:${HOME}/.local/bin"
+
 # --==[ Autostart ]==--
 # neofetch
 
