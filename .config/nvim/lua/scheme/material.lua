@@ -35,11 +35,8 @@ require('material').setup({
 	custom_highlights = {}
 })
 
-vim.cmd[[
-	colorscheme material
-]]
-
 vim.g.material_style = 'deep ocean'
+vim.cmd[[colorscheme material]]
 
 -- Styles:
 -- darker

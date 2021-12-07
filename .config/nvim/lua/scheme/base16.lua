@@ -9,6 +9,4 @@
 -- monokai
 -- paraiso
 
-vim.cmd[[
-	colorscheme base16-schemer-dark
-]]
+vim.cmd[[colorscheme base16-schemer-dark]]

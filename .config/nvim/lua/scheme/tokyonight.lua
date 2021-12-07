@@ -21,6 +21,4 @@ g.tokyonight_dark_float = true
 g.tokyonight_lualine_bold = false
 
 -- Set Colorscheme
-vim.cmd[[
-	colorscheme tokyonight
-]]
+vim.cmd[[colorscheme tokyonight]]
