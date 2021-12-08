@@ -21,7 +21,7 @@ alias grep='grep --color=auto'
 
 # Files
 alias ls='exa --group-directories-first'
-alias all='exa -la --group-directories-first'
+alias ll='exa -la --group-directories-first'
 alias tree='exa -T'
 
 # Development
