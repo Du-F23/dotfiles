@@ -69,10 +69,12 @@
 
 #### Fonts
 
-- *nerd-fonts-mononoki
-- *nerd-fonts-ubuntu-mono
-- *nerd-fonts-go-mono
-- *nerd-fonts-hack
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+  - Go-Mono
+  - Hack
+  - Mononoki
+  - Sauce Code Pro
+  - UbuntuMono
 - gnu-free-fonts
 - noto-fonts
 
