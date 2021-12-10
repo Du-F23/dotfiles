@@ -16,7 +16,7 @@ require('config.treesitter')
 require('config.lualine')
 
 -- IDE Modules
--- require('ide')
+require('ide')
 
 -- Key Bindings
 require('keymaps')
