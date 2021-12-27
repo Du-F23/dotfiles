@@ -26,6 +26,8 @@
   - python-setuptools
   - python-psutil
   - python-iwlib
+  - python-dbus-next
+  - pacman-contrib
 
 #### Display Manager
 
@@ -60,7 +62,7 @@
 #### Code Editor
 
 - vim
-- neovim
+- neovim (vimscript)
   - *neovim-plug-git
   - nodejs
   - yarn
@@ -77,6 +79,9 @@
   - UbuntuMono
 - gnu-free-fonts
 - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
+  - noto-fonts-extra
 
 #### File Manager
 
@@ -94,6 +99,7 @@
 
 - telegram-desktop
 - *whatsapp-nativefier
+- caprine
 
 #### Desktop
 
