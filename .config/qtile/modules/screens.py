@@ -7,21 +7,21 @@ from .widgets import widgets
 
 screens = [
     Screen(
-        top=bar.Bar(
+        top = bar.Bar(
             # Source in widgets.py
             widgets,
             
             # Bar Size
-            20,
+            18,
 
             # Background Color
-            background="#00000000",
+            background = "#00000000",
 
             # Margin
-            margin=0,
+            margin = [7, 7, 0, 7],
 
             # Transparency
-            opacity=1,
+            opacity = 1,
         ),
     ),
 ]
