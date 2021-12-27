@@ -18,6 +18,7 @@ alias c='clear'
 alias tar='tar -xf'
 alias dload='curl -O'
 alias grep='grep --color=auto'
+alias pacman='sudo pacman'
 
 # Files
 alias ls='exa --group-directories-first'
