@@ -8,44 +8,34 @@ from .settings import mod
 
 # Workspaces
 groups = [
-    Group(
-        '1',
+    Group('1',
         label = ''),
 
-    Group(
-        '2',
+    Group('2',
         label = ''),
 
-    Group(
-        '3',
+    Group('3',
         label = ''),
 
-    Group(
-        '4',
+    Group('4',
         label = ''),
 
-    Group(
-        '5',
+    Group('5',
         label = ''),
 
-    Group(
-        '6',
+    Group('6',
         label = ''),
 
-    Group(
-        '7',
+    Group('7',
         label = ''),
 
-    Group(
-        '8',
+    Group('8',
         label = ''),
 
-    Group(
-        '9',
+    Group('9',
         label = ''),
 
-    Group(
-        '0',
+    Group('0',
         label = ''),
 ]
 
@@ -53,8 +43,10 @@ groups = [
 for i in groups:
     keys.extend([
         # Switch to group {}
-        Key([mod], i.name, lazy.group[i.name].toscreen(), format(i.name)),
+        Key([mod], i.name, lazy.group[i.name].toscreen(toggle = True)),
 
         # Move focused window to group {}
-        Key([mod, 'shift'], i.name, lazy.window.togroup(i.name), format(i.name)),
+        Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)),
     ])
+
+
