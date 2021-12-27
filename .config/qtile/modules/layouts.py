@@ -6,23 +6,19 @@ from libqtile.config import Match
 from .colorscheme import hex
 
 # Layout config
-properties = {
+config = {
     'border_normal': hex['normal'],
     'border_focus': hex['border'],
     'border_width': 1,
     'single_border_width': 0,
-    'margin': 5,
-    'single_margin': 5,
+    'margin': 7,
+    'single_margin': 7,
 }
 
 layouts = [
-    layout.Max(),   
-    layout.MonadTall(
-        **properties
-    ),
-    layout.MonadWide(
-        **properties
-    ),
+    # layout.Max(),
+    layout.MonadTall(**config),
+    layout.MonadWide(**config),
 ]
 
 # Floating windows
@@ -36,7 +32,7 @@ floating_layout = layout.Floating(
         Match(title='branchdialog'),
         Match(title='pinentry'),
     ],
-    border_normal=hex['normal'],
-    border_focus=hex['border'],
-    border_width=0,
+    border_normal = hex['normal'],
+    border_focus = hex['border'],
+    border_width = 0,
 )
