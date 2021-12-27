@@ -2,21 +2,11 @@
 
 from os import path
 
-# Mod Key
 mod = 'mod4'
-
-# Terminal
 terminal = 'alacritty'
-
-# Browser
 browser = 'firefox'
-
-# File Manager
 file_manager = 'thunar'
-
-# Font
-font = 'UbuntuMono Nerd Font'
-fontsize = 11
+font = 'SauceCodePro Nerd Font Medium'
 
 # Hardware
 interface = 'wlp2s0'
@@ -28,6 +18,6 @@ directory = path.join(path.expanduser('~'), ".config/qtile/colorschemes/")
 theme_path = directory + theme
 
 # Wallpapers
-img = 'abstract_wp1.jpg'
+img = 'minimalist_wp1.jpg'
 folder = '~/wallpapers/'
 wallpaper = folder + img
