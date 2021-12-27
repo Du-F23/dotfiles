@@ -77,10 +77,10 @@ function set_prompt() {
         fi
     done
 
-    PROMPT='%B%F{green}%n%f%F{yellow}:%f%F{blue}%1d%f '
+    PROMPT='%B%F{white}╭╴%f%F{green}%n%f%F{yellow}:%f%F{blue}%1d%f '
 	
     if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
-        PROMPT+='%bon%B %F{magenta} '
+        PROMPT+='%b%F{white}on%f%B %F{magenta} '
         PROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
         PROMPT+='%f '
 
@@ -102,7 +102,7 @@ function set_prompt() {
     fi
 
     PROMPT+=$'\n'
-    PROMPT+='%b%F{yellow}$%f '
+    PROMPT+='%F{white}╰╴%f%b%F{yellow}$%f '
 
     setopt no_prompt_{bang,subst} prompt_percent
 }
