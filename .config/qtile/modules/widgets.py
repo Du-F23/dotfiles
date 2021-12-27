@@ -3,215 +3,369 @@
 from libqtile import widget
 
 from .colorscheme import hex
-from .settings import font, fontsize, interface, backlight
+from .settings import font, interface, backlight
+
+icon_font = 'SauceCodePro Nerd Font'
 
 # General bar settings
 widget_defaults = dict(
-    font=font,
-    fontsize=fontsize,
-    padding=4,
+    font = font,
+    fontsize = 10,
+    padding = 4,
 )
 extension_defaults = widget_defaults.copy()
 
 # Functions
-def base(bg, txt):
+def base(bg, fg):
     return {
         'background': bg,
-        'foreground': txt,
+        'foreground': fg,
     }
 
-def triangle(icon):
+def font_config(fontsize):
     return {
-        'fontsize': 37,
-        'padding': -3,
-        'text': icon,
+        'font': icon_font,
+        'fontsize': fontsize,
     }
 
-def left(bg, txt):
-    return widget.TextBox(
-        **base(bg, txt),
-        **triangle(''),
+def sep(fg):
+    if fg != '':
+        return widget.TextBox(
+            **base(None, fg),
+            **font_config(15),
+            padding = 12,
+            text = '')
+    else:
+        fg = '#000000'
+        return widget.TextBox(
+            **base(None, fg),
+            **font_config(5),
+            padding = 1,
+            text = ' ')
+
+def spacer(bg):
+    return widget.Spacer(
+        background = bg
     )
 
-def right(bg, txt):
+def side(fg, side):
+    if side == 'right': icon = ''
+    elif side == 'left': icon = ''
+    else: icon = ''
     return widget.TextBox(
-        **base(bg, txt),
-        **triangle(''),
-    )
+        **base(None, fg),
+        **font_config(15),
+        padding = 0,
+        text = icon)
 
-def icon(bg, txt, icon):
+def fix_padding(bg):
     return widget.TextBox(
-        **base(bg, txt),
-        fontsize=13,
-        padding=3,
-        text=icon,
-    )
+        **font_config(11),
+        background = bg,
+        padding = -1,
+        text = ' ')
 
-# Widgets
-def distro(bg, txt):
+def icon(bg, fg, icon):
+    return widget.TextBox(
+        **base(bg, fg),
+        **font_config(13),
+        padding = 3,
+        text = icon)
+
+def alt_fg(fg, icon_fg):
+    if icon_fg == '':
+        return fg
+    else:
+        return icon_fg
+
+# Modules
+def battery(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
     return [
-        widget.TextBox(
-            **base(bg, txt),
-            text="  ",
-            fontsize=13,
-        ),
+        side(bg, 'left'),
+        widget.Battery(
+            **base(bg, icon_fg),
+            **font_config(13),
+            format = '{char}',
+            charge_char = 'ﮣ',
+            discharge_char = ' ',
+            full_char = '',
+            low_percentage = 0.3,
+            low_foreground = '#FF0000',
+            padding = None,
+            update_interval = 60),
+        widget.Battery(
+            **base(bg, fg),
+            format = '{percent:2.0%}',
+            low_foreground = fg,
+            padding = None,
+            update_interval = 60),
+        side(bg, 'right'),
     ]
 
-def net(bg, txt):
+def brightness(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
     return [
-        widget.Wlan(
-            **base(bg, txt),
-            interface=interface,
-            format='Net:',
-            disconnected_message='Error',
-        ),
-        widget.Net(
-            **base(bg, txt),
-            interface=interface,
-            use_bits=True,
-            format='{down} {up}',
-        ),
-        icon(bg, txt, ' '),
+        side(bg, 'left'),
+        icon(bg, icon_fg, ' '),
+        widget.Backlight(
+            **base(bg, fg),
+            backlight_name = backlight,
+            format = '{percent:2.0%}',
+            padding = 0,
+            update_interval = 0.2),
+        fix_padding(bg),
+        side(bg, 'right'),
     ]
 
-def layout(bg, txt):
+def clock(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
     return [
-        widget.CurrentLayout(
-            **base(bg, txt),
-        ),
-        icon(bg, txt, ' ﬿'),
+        side(bg, 'left'),
+        icon(bg, icon_fg, ' '),
+        widget.Clock(
+            **base(bg, fg),
+            format = '%A, %b %-d, %I:%M %p',
+            padding = 0,
+            update_interval = 1.0),
+        fix_padding(bg),
+        side(bg, 'right'),
     ]
 
-def memory(bg, txt):
+def cpu(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
     return [
-        widget.Memory(
-            **base(bg, txt),
-            format='{MemUsed: .0f}{mm}',
-        ),
-        icon(bg, txt, '﬙ '),
-    ]
-
-def cpu(bg, txt):
-    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ''),
         widget.CPU(
-            **base(bg, txt),
-            format='{load_percent}%',
-        ),
-        icon(bg, txt, ' '),
+            **base(bg, fg),
+            format = '{load_percent:.0f}%',
+            padding = None,
+            update_interval = 1.0),
+        side(bg, 'right'),
+    ]
+
+def disk(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ''),
+        widget.DF(
+            **base(bg, fg),
+            format = '{uf}{m}',
+            measure = 'G',
+            padding = None,
+            partition = '/',
+            update_interval = 60,
+            visible_on_warn = False,
+            warn_color = '#ff0000'),
+        side(bg, 'right'),
     ]
 
 def groups(bg):
     return [
-        widget.Spacer(background=bg),
         widget.GroupBox(
-            highlight_method='line',
-            highlight_color=[bg, bg],
-            block_highlight_text_color=hex['focus'],
-            borderwidth=1,
-            fontsize=17,
-            margin_x=0,
-            padding_x=-1,
-            rounded=False,
-            disable_drag=True,
-            use_mouse_wheel=False,
-            background=bg,
-            active=hex['active'],
-            inactive=hex['inactive'],
-            this_screen_border=hex['focus'],
-            this_current_screen_border=hex['focus'],
-        ),
-        widget.Spacer(background=bg),
+            **font_config(10),
+            background = bg,
+            blockwidth = 2,
+            margin_y = 3,
+            rounded = True,
+            hide_unused = False,
+            disable_drag = True,
+            use_mouse_wheel = False,
+            active = hex['active'],
+            inactive = hex['inactive'],
+            highlight_method = 'text',
+            this_current_screen_border = hex['focus']),
     ]
 
-def volume(bg, txt):
+def group_number(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
     return [
-        icon(bg, txt, ' '),
-        widget.PulseVolume(
-            **base(bg, txt),
-            limit_max_volume=True,
-        ),
+        side(bg, 'left'),
+        icon(bg, icon_fg, '缾'),
+        widget.AGroupBox(
+            **base(bg, fg),
+            borderwidth = 0,
+            margin_y = 4,
+            padding = 0),
+        side(bg, 'right'),
     ]
 
-def brightness(bg, txt):
+def layout_icon():
+    return widget.CurrentLayoutIcon(
+        background = None,
+        padding = 5,
+        scale = 0.75)
+
+def layout(bg, fg):
     return [
-        icon(bg, txt, ' '),
-        widget.Backlight(
-            **base(bg, txt),
-            backlight_name=backlight,
-        ),
+        side(bg, 'left'),
+        widget.CurrentLayout(
+            **base(bg, fg),
+            padding = None),
+        side(bg, 'right'),
     ]
 
-def harddisk(bg, txt):
+def logo(bg, fg):
     return [
-        icon(bg, txt, ' '),
-        widget.DF(
-            **base(bg, txt),
-            visible_on_warn=False,
-            format='Hard Disk: {r:.0f}%',
-        ),
+        side(bg, 'left'),
+        widget.TextBox(
+            **base(bg, fg),
+            **font_config(13),
+            padding = 10,
+            text = ''),
+        fix_padding(bg),
+        side(bg, 'right'),
     ]
 
-def clock(bg, txt):
+def quick_exit(bg, fg):
     return [
-        icon(bg, txt, ' '),
-        widget.Clock(
-            **base(bg, txt),
-            format='%H:%M - %A, %b %-d',
-        ),
-    ]
-
-def close(bg, txt):
-    return [
+        side(bg, 'left'),
         widget.QuickExit(
-            **base(bg, txt),
-            countdown_format='{}  ',
-            countdown_start=5,
-            default_text='襤  ',
-            fontsize=13,
-        ),
+            **base(bg, fg),
+            **font_config(13),
+            countdown_format='{}',
+            countdown_start = 5,
+            default_text = '襤',
+            padding = 10,
+            timer_interval = 1),
+        side(bg, 'right'),
     ]
 
-widgets = [
-    # Base 1
-    *distro(hex['base1'], hex['text']),
-    left(hex['base2'], hex['base1']),
+def ram(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, '﬙'),
+        widget.Memory(
+            **base(bg, fg),
+            format = '{MemUsed: .0f}{mm}',
+            measure_mem = 'M',
+            padding = 0,
+            update_interval = 1.0),
+        fix_padding(bg),
+        side(bg, 'right'),
+    ]
 
-    # Base 2
-    *net(hex['base2'], hex['color1']),
-    left(hex['base3'], hex['base2']),
+def volume(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ''),
+        widget.PulseVolume(
+            **base(bg, fg),
+            get_volume_command = None,
+            limit_max_volume = True,
+            padding = None,
+            update_interval = 0.2),
+        side(bg, 'right'),
+    ]
 
-    # Base 3
-    *layout(hex['base3'], hex['color2']),
-    left(hex['base4'], hex['base3']),
+def updates(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ' '),
+        widget.CheckUpdates(
+            **base(bg, fg),
+            colour_have_updates = fg,
+            colour_no_updates = fg,
+            display_format = '{updates}',
+            distro = 'Arch_checkupdates',
+            no_update_string = '0',
+            padding = 0,
+            update_interval = 3600),
+        fix_padding(bg),
+        side(bg, 'right'),
+    ]
 
-    # Base 4
-    *memory(hex['base4'], hex['color3']),
-    left(hex['base5'], hex['base4']),
+def spotify(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, '阮 '),
+        widget.Mpris2(
+            **base(bg, fg),
+            name = 'spotify',
+            objname="org.mpris.MediaPlayer2.spotify",
+            display_metadata = ['xesam:title', 'xesam:artist'],
+            max_chars = 41,
+            padding = 0,
+            scroll_chars = None,
+            scroll_interval = 0.5,
+            stop_pause_text = 'Paused'),
+        fix_padding(bg),
+        side(bg, 'right'),
+    ]
 
-    # Base 5
-    *cpu(hex['base5'], hex['color4']),
-    left(hex['center'], hex['base5']),
+def weather(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ''),
+        widget.OpenWeather(
+            **base(bg, fg),
+            format = '{main_temp:.0f}°{units_temperature}',
+            location = 'Mexico City, MX',
+            metric = True,
+            padding = None,
+            update_interval = 600),
+        side(bg, 'right'),
+    ]
 
-    # Center
-    *groups(hex['center']),
+def wifi_speed(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ''),
+        widget.Net(
+            **base(bg, fg),
+            format = '{down} {up}',
+            interface = interface,
+            padding = None,
+            update_interval = 1,
+            use_bits = True),
+        side(bg, 'right'),
+    ]
 
-    # Base 5
-    right(hex['center'], hex['base5']),
-    *volume(hex['base5'], hex['color4']),
+def wifi(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'left'),
+        icon(bg, icon_fg, ' '),
+        widget.Wlan(
+            **base(bg, fg),
+            disconnected_message = 'Disconnected',
+            format = 'Connected',
+            interface = interface,
+            padding = 0,
+            update_interval = 5),
+        fix_padding(bg),
+        side(bg, 'right'),
+    ]
 
-    # Base 4
-    right(hex['base5'], hex['base4']),
-    *brightness(hex['base4'], hex['color3']),
+# Layouts
+main = [
+    *logo('#ffffff', '#000000'),
 
-    # Base 3
-    right(hex['base4'], hex['base3']),
-    *harddisk(hex['base3'], hex['color2']),
+    sep('#ffffff'),
 
-    # Base 2
-    right(hex['base3'], hex['base2']),
-    *clock(hex['base2'], hex['color1']),
+    *cpu('#ffffff', '#000000', ''),
+    sep(''),
+    *ram('#ffffff', '#000000', ''),
+    sep('#ffffff'), 
+    *quick_exit('#ffffff', '#000000'),
 
-    # Base 1
-    right(hex['base2'], hex['base1']),
-    *close(hex['base1'], hex['text']),
+    spacer(None),
+    *groups(None),
+    spacer(None),
+
+    *brightness('#ffffff', '#000000', ''),
+    sep(''),
+    *volume('#ffffff', '#000000', ''),
+    sep('#ffffff'),
+    *clock('#ffffff', '#000000', ''),
 ]
+
+widgets = main
