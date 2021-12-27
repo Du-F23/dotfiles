@@ -17,5 +17,5 @@ autostart = [
     'xset -dpms s off',
 ]
 
-for x in autostart:
-    os.system(x)
+for i in autostart:
+    os.system(i)
