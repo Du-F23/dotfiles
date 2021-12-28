@@ -1,9 +1,9 @@
-# --==[ Key bindings ]==--
+# --==[ Key Bindings ]==--
 
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
-from .settings import mod, terminal, browser, file_manager
+from .settings import browser, file_manager, mod, terminal
 
 keys = [
     # Switch between windows

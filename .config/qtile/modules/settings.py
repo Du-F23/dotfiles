@@ -2,22 +2,27 @@
 
 from os import path
 
+# General
 mod = 'mod4'
 terminal = 'alacritty'
 browser = 'firefox'
 file_manager = 'thunar'
 font = 'SauceCodePro Nerd Font Medium'
 
-# Hardware
-interface = 'wlp2s0'
+# Weather
+location = {'Ecatzingo': 'Ecatzingo'}
+city = 'Mexico City, MX'
+
+# Hardware [/sys/class]
+net = 'wlp2s0'
 backlight = 'radeon_bl0'
 
-# Themes
-theme = 'material_ocean_dark.json'
+# Color Scheme
+file = 'material_ocean_dark.json'
 directory = path.join(path.expanduser('~'), ".config/qtile/colorschemes/")
-theme_path = directory + theme
+theme_path = directory + file
 
-# Wallpapers
+# Wallpaper
 img = 'minimalist_wp1.jpg'
 folder = '~/wallpapers/'
 wallpaper = folder + img

@@ -48,5 +48,3 @@ for i in groups:
         # Move focused window to group {}
         Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)),
     ])
-
-
