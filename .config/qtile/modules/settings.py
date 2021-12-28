@@ -19,8 +19,8 @@ backlight = 'radeon_bl0'
 
 # Color Scheme
 file = 'material_ocean_dark.json'
-directory = path.join(path.expanduser('~'), ".config/qtile/colorschemes/")
-theme_path = directory + file
+directory = path.join(path.expanduser('~'), '.config/qtile/schemes/')
+scheme_path = directory + file
 
 # Wallpaper
 img = 'minimalist_wp1.jpg'

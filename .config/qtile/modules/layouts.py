@@ -3,7 +3,7 @@
 from libqtile import layout
 from libqtile.config import Match
 
-from .colorscheme import hex
+from .colors import hex
 
 # Layout config
 config = {
