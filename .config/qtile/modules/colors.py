@@ -3,34 +3,36 @@
 import json
 from .settings import scheme_path
 
-# Scheme settings
-file = open(scheme_path, 'r')
-content = file.read()
-color = json.loads(content)
-file.close()
+# Import a JSON file
+with open(scheme_path) as file:
+    colors = json.load(file)
+    file.close()
 
-hex = {
-    # Layouts
-    'normal': color['normal'],
-    'border': color['border'],
+color = [''] * len(colors)
 
-    # Workspaces
-    'active': color['active'],
-    'inactive': color['inactive'],
-    'focus': color['focus'],
+for key, value in colors.items():
+    color[int(key)] = value
 
-    # Bar
-    'center': color['center'],
-    'base1': color['base1'],
-    'base2': color['base2'],
-    'base3': color['base3'],
-    'base4': color['base4'],
-    'base5': color['base5'],
+# Normal:
+  # [0] = black
+  # [1] = red
+  # [2] = green
+  # [3] = yellow
+  # [4] = blue
+  # [5] = magenta
+  # [6] = cyan
+  # [7] = white
 
-    # Text & Icons
-    'text': color['text'],
-    'color1': color['color1'],
-    'color2': color['color2'],
-    'color3': color['color3'],
-    'color4': color['color4'],
-}
+# Bright:
+  # [8]  = black
+  # [9]  = red
+  # [10] = green
+  # [11] = yellow
+  # [12] = blue
+  # [13] = magenta
+  # [14] = cyan
+  # [15] = white
+
+# Primary:
+  # [16] = background
+  # [17] = foreground

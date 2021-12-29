@@ -18,7 +18,7 @@ net = 'wlp2s0'
 backlight = 'radeon_bl0'
 
 # Color Scheme
-file = 'material_ocean_dark.json'
+file = 'material_ocean.json'
 directory = path.join(path.expanduser('~'), '.config/qtile/schemes/')
 scheme_path = directory + file
 

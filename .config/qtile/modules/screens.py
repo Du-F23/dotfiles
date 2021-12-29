@@ -12,13 +12,13 @@ screens = [
             widgets,
             
             # Bar Size
-            18,
+            20,
 
             # Background Color
             background = "#00000000",
 
             # Margin
-            margin = [7, 7, 0, 7],
+            margin = [9, 20, 0, 20],
 
             # Transparency
             opacity = 1,

@@ -2,8 +2,8 @@
 
 from libqtile import widget
 
-from .colors import hex
 from .settings import backlight, city, font, location, net
+from .colors import color
 
 icon_font = 'SauceCodePro Nerd Font'
 
@@ -36,13 +36,13 @@ def sep(fg):
         return widget.TextBox(
             **base(None, fg),
             **font_config(15),
-            padding = 12,
+            padding = 13,
             text = '')
     else:
         fg = '#000000'
         return widget.TextBox(
             **base(None, fg),
-            **font_config(5),
+            **font_config(8),
             padding = 1,
             text = ' ')
 
@@ -50,13 +50,13 @@ def side(fg, side):
     if side.lower() == 'l':
         return widget.TextBox(
             **base(None, fg),
-            **font_config(15),
+            **font_config(20),
             padding = 0,
             text = '')
     elif side.lower() == 'r':
         return widget.TextBox(
             **base(None, fg),
-            **font_config(15),
+            **font_config(20),
             padding = 0,
             text = '')
 
@@ -70,7 +70,7 @@ def fix_padding(bg):
 def icon(bg, fg, icon):
     return widget.TextBox(
         **base(bg, fg),
-        **font_config(13),
+        **font_config(15),
         padding = 3,
         text = icon)
 
@@ -84,7 +84,7 @@ def alt_fg(fg, icon_fg):
 def layout_icon():
     return widget.CurrentLayoutIcon(
         background = None,
-        padding = 5,
+        padding = 6,
         scale = 0.75)
 
 def system_tray():
@@ -100,13 +100,13 @@ def battery(bg, fg, icon_fg):
         side(bg, 'L'),
         widget.Battery(
             **base(bg, icon_fg),
-            **font_config(13),
+            **font_config(15),
             format = '{char}',
             charge_char = 'ﮣ',
             discharge_char = ' ',
             full_char = '',
             low_percentage = 0.3,
-            low_foreground = '#FF0000',
+            low_foreground = color[1],
             padding = None,
             update_interval = 60),
         widget.Battery(
@@ -173,7 +173,7 @@ def disk(bg, fg, icon_fg):
             partition = '/',
             update_interval = 60,
             visible_on_warn = False,
-            warn_color = '#ff0000'),
+            warn_color = color[1]),
         side(bg, 'R'),
     ]
 
@@ -188,10 +188,10 @@ def groups(bg):
             hide_unused = False,
             disable_drag = True,
             use_mouse_wheel = False,
-            active = hex['active'],
-            inactive = hex['inactive'],
+            active = color[4],
+            inactive = color[5],
             highlight_method = 'text',
-            this_current_screen_border = hex['focus']),
+            this_current_screen_border = color[2]),
     ]
 
 def group_number(bg, fg, icon_fg):
@@ -221,7 +221,7 @@ def logo(bg, fg):
         side(bg, 'L'),
         widget.TextBox(
             **base(bg, fg),
-            **font_config(13),
+            **font_config(15),
             padding = 10,
             text = ''),
         fix_padding(bg),
@@ -233,7 +233,7 @@ def quick_exit(bg, fg):
         side(bg, 'L'),
         widget.QuickExit(
             **base(bg, fg),
-            **font_config(13),
+            **font_config(15),
             countdown_format='{}',
             countdown_start = 5,
             default_text = '襤',
@@ -297,7 +297,7 @@ def spotify(bg, fg, icon_fg):
         widget.Mpris2(
             **base(bg, fg),
             name = 'spotify',
-            objname="org.mpris.MediaPlayer2.spotify",
+            objname = 'org.mpris.MediaPlayer2.spotify',
             display_metadata = ['xesam:title', 'xesam:artist'],
             max_chars = 41,
             padding = 0,
@@ -427,25 +427,25 @@ def wttr(bg, fg):
 
 # Layouts
 main = [
-    *logo('#ffffff', '#000000'),
+    *logo(color[0], color[12]),
 
-    sep('#ffffff'),
+    sep(color[4]),
 
-    *cpu('#ffffff', '#000000', '#'),
+    *cpu(color[0], color[17], color[2]),
     sep('#'),
-    *ram('#ffffff', '#000000', '#'),
-    sep('#ffffff'), 
-    *wttr('#ffffff', '#000000'),
+    *ram(color[0], color[17], color[3]),
+    sep('#'),
+    *disk(color[0], color[17], color[4]),
 
     spacer(None),
     *groups(None),
     spacer(None),
 
-    *brightness('#ffffff', '#000000', '#'),
+    *brightness(color[0], color[17], color[1]),
     sep('#'),
-    *volume('#ffffff', '#000000', '#'),
-    sep('#ffffff'),
-    *clock('#ffffff', '#000000', '#'),
+    *volume(color[0], color[17], color[2]),
+    sep(color[4]),
+    *clock(color[0], color[17], color[4]),
 ]
 
 widgets = main
