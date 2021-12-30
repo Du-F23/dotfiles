@@ -427,7 +427,7 @@ def wttr(bg, fg):
 
 # Layouts
 main = [
-    *logo(color[8], color[4]),
+    *logo(color[8], color[12]),
 
     sep(color[8]),
 

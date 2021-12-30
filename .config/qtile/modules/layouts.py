@@ -8,7 +8,7 @@ from .colors import color
 # Layout config
 config = {
     'border_normal': color[8],
-    'border_focus': color[5],
+    'border_focus': color[4],
     'border_width': 2,
     'single_border_width': 0,
     'margin': 9,
