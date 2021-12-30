@@ -4,17 +4,17 @@ local lualine = require 'lualine'
 
 -- Color table for highlights
 local colors = {
-    bg       = '#202328',
-    fg       = '#bbc2cf',
-    yellow   = '#ECBE7B',
-    cyan     = '#008080',
-    darkblue = '#081633',
-    green    = '#98be65',
-    orange   = '#FF8800',
-    violet   = '#a9a1e1',
-    magenta  = '#c678dd',
-    blue     = '#51afef',
-    red      = '#ec5f67',
+    bg       = '#181a29',
+    fg       = '#c5c9de',
+    yellow   = '#ffd47e',
+    cyan     = '#98e4ff',
+    darkblue = '#282a40',
+    green    = '#cdea9f',
+    orange   = '#eb7f84',
+    violet   = '#d6afed',
+    magenta  = '#d3a7ee',
+    blue     = '#93bbff',
+    red      = '#f07178',
 }
 
 local conditions = {
@@ -145,7 +145,6 @@ ins_left {
     end,
 }
 
---[[
 ins_left {
     -- Lsp server name
     function()
@@ -166,7 +165,6 @@ ins_left {
     icon = ' LSP:',
     color = { fg = '#ffffff', gui = 'bold' },
 }
---]]
 
 -- Add components to right sections
 ins_right {
