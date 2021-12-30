@@ -7,12 +7,12 @@ from .colors import color
 
 # Layout config
 config = {
-    'border_normal': color[16],
+    'border_normal': color[8],
     'border_focus': color[5],
-    'border_width': 1,
+    'border_width': 2,
     'single_border_width': 0,
-    'margin': 7,
-    'single_margin': 7,
+    'margin': 9,
+    'single_margin': 9,
 }
 
 layouts = [
@@ -32,7 +32,7 @@ floating_layout = layout.Floating(
         Match(title = 'branchdialog'),
         Match(title = 'pinentry'),
     ],
-    border_normal = color[16],
+    border_normal = color[8],
     border_focus = color[5],
     border_width = 0,
 )

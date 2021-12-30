@@ -35,14 +35,14 @@ def sep(fg):
     if fg != '#':
         return widget.TextBox(
             **base(None, fg),
-            **font_config(15),
-            padding = 13,
+            **font_config(16),
+            padding = 12,
             text = '')
     else:
         fg = '#000000'
         return widget.TextBox(
             **base(None, fg),
-            **font_config(8),
+            **font_config(6),
             padding = 1,
             text = ' ')
 
@@ -84,8 +84,8 @@ def alt_fg(fg, icon_fg):
 def layout_icon():
     return widget.CurrentLayoutIcon(
         background = None,
-        padding = 6,
-        scale = 0.75)
+        padding = 5,
+        scale = 0.65)
 
 def system_tray():
     return widget.Systray(
@@ -427,25 +427,25 @@ def wttr(bg, fg):
 
 # Layouts
 main = [
-    *logo(color[0], color[12]),
+    *logo(color[8], color[4]),
 
-    sep(color[4]),
+    sep(color[8]),
 
-    *cpu(color[0], color[17], color[2]),
+    *cpu(color[8], color[17], color[2]),
     sep('#'),
-    *ram(color[0], color[17], color[3]),
+    *ram(color[8], color[17], color[3]),
     sep('#'),
-    *disk(color[0], color[17], color[4]),
+    *disk(color[8], color[17], color[4]),
 
     spacer(None),
     *groups(None),
     spacer(None),
 
-    *brightness(color[0], color[17], color[1]),
+    *brightness(color[8], color[17], color[1]),
     sep('#'),
-    *volume(color[0], color[17], color[2]),
-    sep(color[4]),
-    *clock(color[0], color[17], color[4]),
+    *volume(color[8], color[17], color[2]),
+    sep(color[8]),
+    *clock(color[8], color[17], color[4]),
 ]
 
 widgets = main
