@@ -109,6 +109,7 @@
 - vlc
 - *evince-no-gnome
 - libreoffice-fresh
+- gimp
 
 #### Hypervisor
 
