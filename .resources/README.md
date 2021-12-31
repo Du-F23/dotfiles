@@ -78,6 +78,7 @@
   - Sauce Code Pro
   - UbuntuMono
 - gnu-free-fonts
+- ttf-joypixels
 - noto-fonts
   - noto-fonts-cjk
   - noto-fonts-emoji
