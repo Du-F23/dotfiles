@@ -4,7 +4,7 @@ from os import path
 
 # General
 mod = 'mod4'
-terminal = 'alacritty'
+terminal = 'st'
 browser = 'firefox'
 file_manager = 'thunar'
 font = 'SauceCodePro Nerd Font Medium'
