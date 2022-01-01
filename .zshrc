@@ -117,13 +117,13 @@ function set_prompt() {
             for i in ${array[@]}{; do
                 if [[ $vcs_status[$i] != 0 ]]; then
                     case $i in
-                        1) local git_color=3; ;;
-                        2) local git_color=1; ;;
-                        3) local git_color=2; ;;
-                        4) local git_color=3; ;;
-                        5) local git_color=3; ;;
-                        6) local git_color=2; ;;
-                        7) local git_color=2; ;;
+                        1) local git_color=3; ;; # commits behind
+                        2) local git_color=1; ;; # commits ahead
+                        3) local git_color=2; ;; # stashes
+                        4) local git_color=3; ;; # conflicted
+                        5) local git_color=3; ;; # staged
+                        6) local git_color=2; ;; # unstaged
+                        7) local git_color=2; ;; # untracked
                     esac
                     break
                 fi
@@ -139,6 +139,7 @@ function set_prompt() {
 
         RPROMPT+=' ('
         RPROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
+        (( VCS_STATUS_STASHES )) && RPROMPT+=' *'
         RPROMPT+=')%f%b'
     fi
 
