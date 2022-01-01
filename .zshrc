@@ -142,7 +142,6 @@ function set_prompt() {
         RPROMPT+=')%f%b'
     fi
 
-
     setopt no_prompt_{bang,subst} prompt_percent
 }
 
