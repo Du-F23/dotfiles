@@ -427,6 +427,7 @@ def wttr(bg, fg):
 
 # Layouts
 main = [
+    sep('#'),
     *logo(color[8], color[12]),
     sep(color[8]),
 
@@ -450,6 +451,7 @@ main = [
 
     sep(color[8]),
     *clock(color[8], color[17], color[4]),
+    sep('#'),
 ]
 
 widgets = main

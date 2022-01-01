@@ -22,7 +22,7 @@ screens = [
             background = "#00000000",
 
             # Margin
-            margin = [9, 20, 0, 20],
+            margin = [9, 15, 0, 15],
 
             # Transparency
             opacity = 1,
