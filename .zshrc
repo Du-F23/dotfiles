@@ -75,30 +75,50 @@ function set_prompt() {
     PROMPT='%B %F{blue}%1~%f %F{magenta}%f%b '
 	
     function preexec() {
-        timer=$(($(date +%s%0N)/1000000))
+        timer=$(($(date +%s%0N) / 1000000))
     }
 
     function precmd() {
         RPROMPT=''
         if [ $timer ]; then
-            now=$(($(date +%s%0N)/1000000))
-            ms=$(($now-$timer))
-            text='ms'
+            now=$(($(date +%s%0N) / 1000000))
+            ms=$(($now - $timer))
+            time=''
 
             if (( $ms > 99 )); then
                 if (( $ms < 999 )); then
-                    elapsed=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
+                    seconds=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
+
+                    time=($seconds's')
                 else
-                    elapsed=$(bc <<< "scale=1; $ms / 1000" | sed "s/\.0$//")
+                    seconds=$(($ms / 1000))
+
+                    if (( $seconds > 59 )); then
+                        minutes=$(($seconds / 60))
+
+                        if (( $minutes > 59 )); then
+                            hours=$(($minutes / 60))
+                            minutes=$(($minutes - ($hours * 60)))
+
+                            time=$(print $hours'h' $minutes'm' | sed "s/\s0m$//")
+                        else
+                            seconds=$(($seconds - ($minutes * 60)))
+
+                            time=$(print $minutes'm' $seconds's' | sed "s/\s0s$//")
+                        fi
+
+                    else
+                        time=($seconds's')
+                    fi
+
                 fi
-                text='s'
             else
-                elapsed=$ms
+                time=($ms'ms')
             fi
 
             last_exit='%F{%(?.green.red)}%(?.✔.✘)  %f'
-            time_elapsed="%F{cyan}${elapsed}${text}%f"
-            export RPROMPT="%B${last_exit}${time_elapsed}%b"
+            elapsed="%F{cyan}${time}%f"
+            export RPROMPT="%B${last_exit}${elapsed}%b"
             unset timer
         fi
     }
@@ -114,6 +134,7 @@ function set_prompt() {
 
         if [[ $git_status == 1 ]]; then
             local array=(4 1 5 7 6 3 2 0)
+
             for i in ${array[@]}{; do
                 if [[ $vcs_status[$i] != 0 ]]; then
                     case $i in
