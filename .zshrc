@@ -79,6 +79,7 @@ function set_prompt() {
     }
 
     function precmd() {
+        RPROMPT=''
         if [ $timer ]; then
             now=$(($(date +%s%0N)/1000000))
             ms=$(($now-$timer))
