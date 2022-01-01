@@ -31,6 +31,13 @@ def font_config(fontsize):
 def spacer(bg):
     return widget.Spacer(background = bg)
 
+def padding():
+    return widget.TextBox(
+        **font_config(6),
+        background = None,
+        padding = 1,
+        text = ' ')
+
 def sep(fg):
     if fg != '#':
         return widget.TextBox(
@@ -399,6 +406,7 @@ def wttr(bg, fg):
 
 # Widgets:
   # layout_icon()
+  # padding()
   # system_tray()
   # spacer(1)
   # sep(1)
@@ -427,7 +435,7 @@ def wttr(bg, fg):
 
 # Layouts
 main = [
-    sep('#'),
+    padding(),
     *logo(color[8], color[12]),
     sep(color[8]),
 
@@ -451,7 +459,7 @@ main = [
 
     sep(color[8]),
     *clock(color[8], color[17], color[4]),
-    sep('#'),
+    padding(),
 ]
 
 widgets = main
