@@ -89,7 +89,7 @@ function set_prompt() {
                 if (( $ms < 999 )); then
                     elapsed=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
                 else
-                    elapsed=$(bc <<< "scale=1; $ms / 1000" | sed "s/.0//")
+                    elapsed=$(bc <<< "scale=1; $ms / 1000" | sed "s/\.0$//")
                 fi
                 text='s'
             else
