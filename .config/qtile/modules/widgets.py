@@ -443,6 +443,7 @@ def wttr(bg, fg):
   # volume(3)
   # updates(3)
   # spotify(3)
+  # temp()
   # weather(3)
   # wifi_speed(3)
   # wifi(3)
