@@ -7,7 +7,7 @@ from .keys import keys
 from .settings import mod
 
 # Workspaces
-groups = [
+main = [
     Group('1',
         label = ''),
 
@@ -38,6 +38,8 @@ groups = [
     Group('0',
         label = ''),
 ]
+
+groups = main
 
 # Navigation
 for i in groups:

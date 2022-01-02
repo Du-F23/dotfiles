@@ -10,7 +10,6 @@ screens = [
     Screen(
         wallpaper = wallpaper,
         wallpaper_mode = 'fill',
-
         top = bar.Bar(
             # Source in widgets.py
             widgets,
