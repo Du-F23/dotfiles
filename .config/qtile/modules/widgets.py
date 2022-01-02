@@ -31,13 +31,6 @@ def font_config(fontsize):
 def spacer(bg):
     return widget.Spacer(background = bg)
 
-def padding():
-    return widget.TextBox(
-        **font_config(6),
-        background = None,
-        padding = 1,
-        text = ' ')
-
 def sep(fg):
     if fg != '#':
         return widget.TextBox(
@@ -93,6 +86,13 @@ def layout_icon():
         background = None,
         padding = 5,
         scale = 0.65)
+
+def padding():
+    return widget.TextBox(
+        **font_config(6),
+        background = None,
+        padding = 1,
+        text = ' ')
 
 def system_tray():
     return widget.Systray(
@@ -312,6 +312,23 @@ def spotify(bg, fg, icon_fg):
             scroll_interval = 0.5,
             stop_pause_text = 'Paused'),
         fix_padding(bg),
+        side(bg, 'R'),
+    ]
+
+def temp(bg, fg, icon_fg):
+    icon_fg = alt_fg(fg, icon_fg)
+    return [
+        side(bg, 'L'),
+        icon(bg, icon_fg, ''),
+        widget.ThermalSensor(
+            **base(bg, fg),
+            foreground_alert = color[1],
+            metric = True,
+            padding = None,
+            show_tag = False,
+            tag_sensor = None,
+            threshold = 80,
+            update_interval = 2),
         side(bg, 'R'),
     ]
 
