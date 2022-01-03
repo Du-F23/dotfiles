@@ -1,5 +1,0 @@
-# Get VGA compatible controller
-lspci -nnk | grep -i -EA3 "3d|display|vga"
-
-# or
-lspci | grep VGA

@@ -1,6 +1,0 @@
-/var/log/httpd/access_log
-/etc/httpd/conf/httpd.conf
-/var/log/httpd/error_log
-/srv/http/
-
-/etc/php/php.ini
