@@ -1,8 +1,8 @@
 ![qtile](.resources/img/.png)
 <hr />
 
-## My Dotfiles
-### Content:
+# My Dotfiles
+### Table of Contents:
 <ul>
   <li>Coming soon...</li>
 </ul>
