@@ -49,7 +49,7 @@
 
 #### System Utilities
 
-- picom
+- *picom-jonaburg-git
 - feh
 - sxiv
 - rofi
