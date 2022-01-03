@@ -1,6 +1,7 @@
-![qtile](.resources/img/qtile.png)
+![qtile](.resources/img/.png)
+<hr />
 
-# Dotfiles
+## My Dotfiles
 ### Content:
 <ul>
   <li>Coming soon...</li>
