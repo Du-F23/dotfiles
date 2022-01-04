@@ -9,34 +9,84 @@ from .settings import mod
 # Workspaces
 main = [
     Group('1',
-        label = ''),
+        label = '',
+        layout = 'monadtall',
+        matches = [
+            Match(title = 'nvim')
+        ]),
 
     Group('2',
-        label = ''),
+        label = '',
+        layout = 'stack',
+        matches = [
+            Match(wm_class = 'firefox'),
+            Match(wm_class = 'chromium'),
+        ]),
 
     Group('3',
-        label = ''),
+        label = '',
+        layout = 'monadtall',
+        matches = [
+            Match(wm_class = 'code'),
+            Match(wm_class = 'vscodium'),
+        ]),
 
     Group('4',
-        label = ''),
+        label = '',
+        layout = 'monadtall',
+        matches = [
+            Match(wm_class = 'thunar'),
+            Match(title = 'ranger'),
+        ]),
 
     Group('5',
-        label = ''),
+        label = '',
+        layout = 'stack',
+        matches = [
+            Match(wm_class = 'VirtualBox Manager')
+        ]),
 
     Group('6',
-        label = ''),
+        label = '',
+        layout = 'stack',
+        matches = [
+            Match(title = 'GIMP Startup')
+        ]),
 
     Group('7',
-        label = ''),
+        label = '',
+        layout = 'monadtall',
+        matches = [
+            Match(wm_class = 'evince'),
+            Match(wm_class = 'libreoffice'),
+        ]),
 
     Group('8',
-        label = ''),
+        label = '',
+        layout = 'monadtall',
+        matches = [
+            Match(wm_class = 'obs'),
+            Match(wm_class = 'qBittorrent'),
+        ]),
 
     Group('9',
-        label = ''),
+        label = '',
+        layout = 'stack',
+        matches = [
+            Match(wm_class = 'spotify'),
+            Match(wm_class = 'Mplayer'),
+            Match(wm_class = 'vlc'),
+        ]),
 
     Group('0',
-        label = ''),
+        label = '',
+        layout = 'bsp',
+        matches = [
+            Match(wm_class = 'telegram-desktop'),
+            Match(wm_class = 'discord'),
+            Match(wm_class = 'caprine'),
+            Match(title = 'WhatsApp Web'),
+        ]),
 ]
 
 groups = main
