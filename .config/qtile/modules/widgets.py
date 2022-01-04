@@ -84,8 +84,8 @@ def alt_fg(fg, icon_fg):
 def layout_icon():
     return widget.CurrentLayoutIcon(
         background = None,
-        padding = 5,
-        scale = 0.65)
+        padding = 7,
+        scale = 0.7)
 
 def padding():
     return widget.TextBox(
@@ -98,7 +98,7 @@ def system_tray():
     return widget.Systray(
         background = None,
         icon_size = 15,
-        padding = 5)
+        padding = 7)
 
 # Modules
 def battery(bg, fg, icon_fg):
