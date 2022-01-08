@@ -22,10 +22,10 @@ keys = [
     Key([mod, 'shift'], 'k', lazy.layout.shuffle_up()),
 
     # Flip windows [Bsp]
-    # Key([mod, 'mod1'], 'h', lazy.layout.flip_left()),
-    # Key([mod, 'mod1'], 'l', lazy.layout.flip_right()),
-    # Key([mod, 'mod1'], 'j', lazy.layout.flip_down()),
-    # Key([mod, 'mod1'], 'k', lazy.layout.flip_up()),
+    Key([mod, 'mod1'], 'h', lazy.layout.flip_left()),
+    Key([mod, 'mod1'], 'l', lazy.layout.flip_right()),
+    Key([mod, 'mod1'], 'j', lazy.layout.flip_down()),
+    Key([mod, 'mod1'], 'k', lazy.layout.flip_up()),
 
     # Flip windows [Xmonad]
     Key([mod, 'shift'], 'space', lazy.layout.flip()),
