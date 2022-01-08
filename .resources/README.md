@@ -77,7 +77,6 @@
   - Mononoki
   - Sauce Code Pro
   - UbuntuMono
-- gnu-free-fonts
 - ttf-joypixels
 - noto-fonts
   - noto-fonts-cjk
