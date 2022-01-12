@@ -40,6 +40,7 @@
 
 - alacritty
 - xterm
+- [*st](https://github.com/jx11r/st)
 - [zsh](https://wiki.archlinux.org/title/Zsh#Making_Zsh_your_default_shell)
   - zsh-autosuggestions
   - zsh-syntax-highlighting
@@ -50,14 +51,19 @@
 #### System Utilities
 
 - *picom-jonaburg-git
+- *peaclock
 - feh
 - sxiv
+- [*dmenu](https://github.com/jx11r/dmenu)
 - rofi
   - papirus-icon-theme
 - *update-grub
 - neofetch
-  - lolcat
+- *rxfetch
 - htop
+- gtop
+- *gotop-bin
+- *cava
 
 #### Code Editor
 
@@ -68,6 +74,7 @@
   - yarn
   - python-pynvim
 - *visual-studio-code-bin
+- *vscodium-bin
 
 #### Fonts
 
@@ -88,9 +95,11 @@
 - thunar
   - thunar-volman
 - pcmanfm
+- ranger
 
 #### Browser
 
+- w3m
 - firefox
 - opera
   - opera-ffmpeg-codecs
@@ -110,6 +119,8 @@
 - *evince-no-gnome
 - libreoffice-fresh
 - gimp
+- *spotify
+- *spotify-tui-bin
 
 #### Hypervisor
 
