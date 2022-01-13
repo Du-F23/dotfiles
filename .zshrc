@@ -26,8 +26,16 @@ alias ll='exa -la --group-directories-first'
 alias tree='exa -T'
 
 # Development
+alias start='eval "$(ssh-agent -s)"'
+alias github='ssh-add ~/.ssh/github'
 alias cat='bat'
 alias vim='nvim'
+alias gs='git status'
+alias gr='git restore'
+alias gd='git diff'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
 
 # Info
 alias fetch='neofetch'
@@ -57,6 +65,40 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Git Status
 source /usr/share/gitstatus/gitstatus.prompt.zsh
+
+# --==[ Highlighting ]==--
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+
+# --==[ Key Bindings ]==--
+bindkey '^ ' autosuggest-accept                    # ctrl + space
+bindkey '^[[7~' beginning-of-line                  # ctrl + a
+bindkey '^[[8~' end-of-line                        # ctrl + e
+bindkey '^[[2~' overwrite-mode                     # insert
+bindkey '^[[3~' delete-char                        # delete
+bindkey '^[[C'  forward-char                       # right
+bindkey '^[[D'  backward-char                      # left
+bindkey '^[[5~' history-beginning-search-backward  # page up
+bindkey '^[[6~' history-beginning-search-forward   # page down
+bindkey '^[[1;5D' backward-word                    # ctrl + right
+bindkey '^[[1;5C' forward-word                     # ctrl + left
+bindkey '^H' backward-kill-word                    # ctrl + backspace
+bindkey '^K' backward-kill-line                    # ctrl + k
+bindkey '^[[Z' undo                                # shift + tab
+bindkey '^L' clear-screen                          # ctrl + l
+
+# - Keycode
+# (crtl + v) + (key combo)
+# - Source
+# https://linux.die.net/man/1/zshzle
 
 # --==[ Prompt + Git ]==--
 function set_prompt() {
@@ -171,40 +213,6 @@ function set_prompt() {
 
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
 add-zsh-hook precmd set_prompt
-
-# --==[ Highlighting ]==--
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
-
-# --==[ Key bindings ]==--
-bindkey '^ ' autosuggest-accept                    # ctrl + space
-bindkey '^[[7~' beginning-of-line                  # ctrl + a
-bindkey '^[[8~' end-of-line                        # ctrl + e
-bindkey '^[[2~' overwrite-mode                     # insert
-bindkey '^[[3~' delete-char                        # delete
-bindkey '^[[C'  forward-char                       # right
-bindkey '^[[D'  backward-char                      # left
-bindkey '^[[5~' history-beginning-search-backward  # page up
-bindkey '^[[6~' history-beginning-search-forward   # page down
-bindkey '^[[1;5D' backward-word                    # ctrl + right
-bindkey '^[[1;5C' forward-word                     # ctrl + left
-bindkey '^H' backward-kill-word                    # ctrl + backspace
-bindkey '^K' backward-kill-line                    # ctrl + k
-bindkey '^[[Z' undo                                # shift + tab
-bindkey '^L' clear-screen                          # ctrl + l
-
-# - Keycode
-# (crtl + v) + (key combo)
-# - Source
-# https://linux.die.net/man/1/zshzle
 
 # --==[ Exports ]==--
 export PATH="${PATH}:${HOME}/.local/bin"
