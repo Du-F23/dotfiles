@@ -60,113 +60,113 @@ source /usr/share/gitstatus/gitstatus.prompt.zsh
 
 # --==[ Prompt + Git ]==--
 function set_prompt() {
-    local git_status=0;
-    local git_color=0;
+  local git_status=0;
+  local git_color=0;
 
-    PROMPT='%B %F{blue}%1~%f %F{magenta}%f%b '
+  PROMPT='%B %F{blue}%1~%f %F{magenta}%f%b '
 	
-    function preexec() {
-        timer=$(($(date +%s%0N) / 1000000))
-    }
+  function preexec() {
+    timer=$(($(date +%s%0N) / 1000000))
+  }
 
-    function precmd() {
-        RPROMPT=''
-        if [ $timer ]; then
-            now=$(($(date +%s%0N) / 1000000))
-            ms=$(($now - $timer))
-            time=''
+  function precmd() {
+    RPROMPT=''
+    if [ $timer ]; then
+      now=$(($(date +%s%0N) / 1000000))
+      ms=$(($now - $timer))
+      time=''
 
-            if (( $ms > 99 )); then
-                if (( $ms < 999 )); then
-                    seconds=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
+      if (( $ms > 99 )); then
+        if (( $ms < 999 )); then
+          seconds=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
 
-                    time=($seconds's')
-                else
-                    seconds=$(($ms / 1000))
+          time=($seconds's')
+        else
+          seconds=$(($ms / 1000))
 
-                    if (( $seconds > 59 )); then
-                        minutes=$(($seconds / 60))
+          if (( $seconds > 59 )); then
+            minutes=$(($seconds / 60))
 
-                        if (( $minutes > 59 )); then
-                            hours=$(($minutes / 60))
-                            minutes=$(($minutes - ($hours * 60)))
+            if (( $minutes > 59 )); then
+              hours=$(($minutes / 60))
+              minutes=$(($minutes - ($hours * 60)))
 
-                            time=$(print $hours'h' $minutes'm' | sed "s/\s0m$//")
-                        else
-                            seconds=$(($seconds - ($minutes * 60)))
-
-                            time=$(print $minutes'm' $seconds's' | sed "s/\s0s$//")
-                        fi
-
-                    else
-                        time=($seconds's')
-                    fi
-
-                fi
+              time=$(print $hours'h' $minutes'm' | sed "s/\s0m$//")
             else
-                time=($ms'ms')
+              seconds=$(($seconds - ($minutes * 60)))
+
+              time=$(print $minutes'm' $seconds's' | sed "s/\s0s$//")
             fi
 
-            last_exit='%F{%(?.green.red)}%(?.✔.✘)  %f'
-            elapsed="%F{blue}${time}%f"
-            export RPROMPT="%B${last_exit}${elapsed}%b"
-            unset timer
+          else
+            time=($seconds's')
+          fi
+
         fi
-    }
-    
-    if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
-        declare -A vcs_status
-            vcs_status[1]=$VCS_STATUS_COMMITS_BEHIND
-            vcs_status[2]=$VCS_STATUS_COMMITS_AHEAD
-            vcs_status[3]=$VCS_STATUS_STASHES
-            vcs_status[4]=$VCS_STATUS_NUM_CONFLICTED
-            vcs_status[5]=$VCS_STATUS_NUM_STAGED
-            vcs_status[6]=$VCS_STATUS_NUM_UNSTAGED
-            vcs_status[7]=$VCS_STATUS_NUM_UNTRACKED
+      else
+        time=($ms'ms')
+      fi
 
-        for value in ${vcs_status[@]}; do
-            if [[ $value != 0 ]]; then
-                local git_status=1;
-                break
-            fi
-        done
-
-        if [[ $git_status == 1 ]]; then
-            local array=(4 1 5 7 6 3 2 0)
-
-            for i in ${array[@]}{; do
-                if [[ $vcs_status[$i] != 0 ]]; then
-                    case $i in
-                        1) local git_color=3; ;; # commits behind
-                        2) local git_color=0; ;; # commits ahead
-                        3) local git_color=0; ;; # stashes
-                        4) local git_color=3; ;; # conflicted
-                        5) local git_color=2; ;; # staged
-                        6) local git_color=1; ;; # unstaged
-                        7) local git_color=1; ;; # untracked
-                    esac
-                    break
-                fi
-            done
-        fi
-        
-        case $git_color in
-            3) RPROMPT+='%F{red}' ;;
-            2) RPROMPT+='%F{red}' ;;
-            1) RPROMPT+='%F{yellow}' ;;
-            0) RPROMPT+='%F{magenta}' ;;
-        esac
-
-        RPROMPT+='%B ('
-        RPROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
-        (( VCS_STATUS_STASHES )) && RPROMPT+=' *'
-        RPROMPT+=')%f%b'
-        (( VCS_STATUS_COMMITS_BEHIND )) && RPROMPT+='%F{magenta}  %f'
-        (( VCS_STATUS_COMMITS_AHEAD  )) && RPROMPT+='%F{green}  %f'
-        (( VCS_STATUS_NUM_CONFLICTED )) && RPROMPT+='%F{red}  %f'
+      last_exit='%F{%(?.green.red)}%(?.✔.✘)  %f'
+      elapsed="%F{blue}${time}%f"
+      export RPROMPT="%B${last_exit}${elapsed}%b"
+      unset timer
     fi
+  }
+    
+  if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+    declare -A vcs_status
+      vcs_status[1]=$VCS_STATUS_COMMITS_BEHIND
+      vcs_status[2]=$VCS_STATUS_COMMITS_AHEAD
+      vcs_status[3]=$VCS_STATUS_STASHES
+      vcs_status[4]=$VCS_STATUS_NUM_CONFLICTED
+      vcs_status[5]=$VCS_STATUS_NUM_STAGED
+      vcs_status[6]=$VCS_STATUS_NUM_UNSTAGED
+      vcs_status[7]=$VCS_STATUS_NUM_UNTRACKED
 
-    setopt no_prompt_{bang,subst} prompt_percent
+    for value in ${vcs_status[@]}; do
+      if [[ $value != 0 ]]; then
+        local git_status=1;
+        break
+      fi
+    done
+
+    if [[ $git_status == 1 ]]; then
+      local array=(4 1 5 7 6 3 2 0)
+
+      for i in ${array[@]}{; do
+        if [[ $vcs_status[$i] != 0 ]]; then
+          case $i in
+            1) local git_color=3; ;;  # commits behind
+            2) local git_color=0; ;;  # commits ahead
+            3) local git_color=0; ;;  # stashes
+            4) local git_color=3; ;;  # conflicted
+            5) local git_color=2; ;;  # staged
+            6) local git_color=1; ;;  # unstaged
+            7) local git_color=1; ;;  # untracked
+          esac
+          break
+        fi
+      done
+    fi
+        
+    case $git_color in
+      3) RPROMPT+='%F{red}' ;;
+      2) RPROMPT+='%F{red}' ;;
+      1) RPROMPT+='%F{yellow}' ;;
+      0) RPROMPT+='%F{magenta}' ;;
+    esac
+
+    RPROMPT+='%B ('
+    RPROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
+    (( VCS_STATUS_STASHES )) && RPROMPT+=' *'
+    RPROMPT+=')%f%b'
+    (( VCS_STATUS_COMMITS_BEHIND )) && RPROMPT+='%F{magenta}  %f'
+    (( VCS_STATUS_COMMITS_AHEAD  )) && RPROMPT+='%F{green}  %f'
+    (( VCS_STATUS_NUM_CONFLICTED )) && RPROMPT+='%F{red}  %f'
+  fi
+
+  setopt no_prompt_{bang,subst} prompt_percent
 }
 
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
