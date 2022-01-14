@@ -13,8 +13,8 @@ import:
 # --==[ Settings ]==--
 window:
   padding:
-    x: 3
-    y: 3
+    x: 12
+    y: 10
 
 scrolling:
   multiplier: 3
