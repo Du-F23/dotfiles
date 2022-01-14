@@ -4,7 +4,7 @@ import os
 
 autostart = [
     # Keyboard layout
-    'setxkbmap latam',
+    'setxkbmap us',
 
     # Compositor
     'picom &',
