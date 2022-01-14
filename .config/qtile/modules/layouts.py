@@ -10,7 +10,7 @@ def config(layout_name):
     config = {
         'border_normal': color[8],
         'border_focus': color[5],
-        'border_width': 2,
+        'border_width': 1,
         'single_border_width': 0,
         'margin': 9,
         'single_margin': 9,
