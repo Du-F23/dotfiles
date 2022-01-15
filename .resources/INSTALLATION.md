@@ -5,12 +5,12 @@
    - Make a bootable USB
    - Reboot
 
-2. Set the keyboard layout
+2. Set the keyboard layout (Optional)
 ```
-loadkeys la-latin1
+loadkeys us
 ```
 
-3. Verify the boot mode
+3. Verify the boot mode (Optional)
 ```
 ls /sys/firmware/efi/efivars
 ```
@@ -80,7 +80,7 @@ arch-chroot /mnt
       - *en_US ISO-8859-1*
     - Locale: `echo LANG=en_US.UTF-8 > /etc/locale.conf`
     - Generate the locale.gen file: `locale-gen`
-    - Keyboard layout: `echo KEYMAP=la-latin1 > /etc/vconsole.conf`
+    - Keyboard layout: `echo KEYMAP=us > /etc/vconsole.conf`
 
 13. Install GRUB
 ```
