@@ -1,4 +1,4 @@
-![qtile](.resources/img/qtile.png)
+![qtile](.resources/screenshots/qtile.png)
 <hr />
 
 # My Dotfiles
