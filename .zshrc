@@ -223,11 +223,12 @@ function git_prompt() {
 function set_prompt() {
   ZLE_RPROMPT_INDENT=0
   PROMPT='%B%F{cyan}%2~%f%b '
+  RPROMPT=''
 
   if [[ $(pwd) == $HOME ]] || [[ $(pwd) == '/' ]]; then
     PROMPT+='%F{%(?.magenta.red)}❯ %f'
     git_sign
-    elapsed_time
+    # elapsed_time
 
   else
     LAST_COMMIT=''
