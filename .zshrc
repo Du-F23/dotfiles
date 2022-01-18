@@ -74,15 +74,15 @@ source /usr/share/gitstatus/gitstatus.prompt.zsh
 
 # --==[ Highlighting ]==--
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+  ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+  ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
+  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
+  ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 
 # --==[ Key Bindings ]==--
 bindkey '^ ' autosuggest-accept                    # ctrl + space
@@ -122,7 +122,7 @@ function elapsed_time() {
       if (( $ms > 99 )); then
         if (( $ms < 999 )); then
           seconds=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
-          time=($seconds's')
+          # time=($seconds's')
 
         else
           seconds=$(($ms / 1000))
@@ -141,12 +141,12 @@ function elapsed_time() {
             fi
 
           else
-            time=($seconds's')
+            (( $seconds > 19 )) && time=($seconds's')
           fi
 
         fi
       else
-        time=($ms'ms')
+        # time=($ms'ms')
       fi
 
       RPROMPT+="%B%F{yellow}${time}%f%b"
@@ -223,12 +223,12 @@ function git_prompt() {
 function set_prompt() {
   ZLE_RPROMPT_INDENT=0
   PROMPT='%B%F{cyan}%2~%f%b '
-  RPROMPT=''
+  # RPROMPT=''
 
   if [[ $(pwd) == $HOME ]] || [[ $(pwd) == '/' ]]; then
     PROMPT+='%F{%(?.magenta.red)}❯ %f'
     git_sign
-    # elapsed_time
+    elapsed_time
 
   else
     LAST_COMMIT=''
