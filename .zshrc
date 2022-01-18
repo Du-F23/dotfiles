@@ -24,20 +24,26 @@ alias pacman='sudo pacman'
 alias ls='exa --group-directories-first'
 alias ll='exa -la --group-directories-first'
 alias tree='exa -T'
-
-# Development
-alias start='eval "$(ssh-agent -s)"'
-alias github='ssh-add ~/.ssh/github'
 alias cat='bat'
 alias vim='nvim'
+
+# Development
+alias github='eval "$(ssh-agent -s)" && github'
+alias gpsh='git push'
+alias gpll='git pull'
 alias gs='git status'
 alias gr='git restore'
 alias gd='git diff'
 alias ga='git add'
+alias gb='git branch'
+alias gck='git checkout'
+alias gsw='git switch'
 alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 
 # Info
+alias google.com='ping -c 5 google.com'
+alias archlinux.org='ping -c 5 archlinux.org'
 alias fetch='neofetch'
 alias usage='du -sh'
 
@@ -101,28 +107,23 @@ bindkey '^L' clear-screen                          # ctrl + l
 # https://linux.die.net/man/1/zshzle
 
 # --==[ Prompt + Git ]==--
-function set_prompt() {
-  local git_status=0;
-  local git_color=0;
+function preexec() {
+  timer=$(($(date +%s%0N) / 1000000))
+}
 
-  PROMPT='%B %F{blue}%1~%f %F{magenta}%f%b '
-	
-  function preexec() {
-    timer=$(($(date +%s%0N) / 1000000))
-  }
-
+function elapsed_time() {
   function precmd() {
     RPROMPT=''
     if [ $timer ]; then
-      now=$(($(date +%s%0N) / 1000000))
-      ms=$(($now - $timer))
-      time=''
+      local now=$(($(date +%s%0N) / 1000000))
+      local ms=$(($now - $timer))
+      local time=''
 
       if (( $ms > 99 )); then
         if (( $ms < 999 )); then
           seconds=$(bc <<< "scale=1; $ms / 1000" | sed "s/^\./0./")
-
           time=($seconds's')
+
         else
           seconds=$(($ms / 1000))
 
@@ -132,11 +133,10 @@ function set_prompt() {
             if (( $minutes > 59 )); then
               hours=$(($minutes / 60))
               minutes=$(($minutes - ($hours * 60)))
-
               time=$(print $hours'h' $minutes'm' | sed "s/\s0m$//")
+
             else
               seconds=$(($seconds - ($minutes * 60)))
-
               time=$(print $minutes'm' $seconds's' | sed "s/\s0s$//")
             fi
 
@@ -149,63 +149,94 @@ function set_prompt() {
         time=($ms'ms')
       fi
 
-      last_exit='%F{%(?.green.red)}%(?.✔.✘)  %f'
-      elapsed="%F{blue}${time}%f"
-      export RPROMPT="%B${last_exit}${elapsed}%b"
+      RPROMPT+="%B%F{yellow}${time}%f%b"
       unset timer
     fi
   }
-    
+}
+
+function git_sign() {
   if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
     declare -A vcs_status
       vcs_status[1]=$VCS_STATUS_COMMITS_BEHIND
       vcs_status[2]=$VCS_STATUS_COMMITS_AHEAD
-      vcs_status[3]=$VCS_STATUS_STASHES
-      vcs_status[4]=$VCS_STATUS_NUM_CONFLICTED
-      vcs_status[5]=$VCS_STATUS_NUM_STAGED
-      vcs_status[6]=$VCS_STATUS_NUM_UNSTAGED
-      vcs_status[7]=$VCS_STATUS_NUM_UNTRACKED
+      vcs_status[3]=$VCS_STATUS_HAS_CONFLICTED
+      vcs_status[4]=$VCS_STATUS_HAS_UNSTAGED
+      vcs_status[5]=$VCS_STATUS_HAS_STAGED
+      vcs_status[6]=$VCS_STATUS_HAS_UNTRACKED
 
     for value in ${vcs_status[@]}; do
-      if [[ $value != 0 ]]; then
-        local git_status=1;
+      if [[ $value > 0 ]]; then
+        RPROMPT+='%B%F{magenta} *%f%b'
+        break
+      fi
+    done
+  fi
+}
+
+function git_prompt() {
+  if gitstatus_query MY && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+    declare -A vcs_status
+      vcs_status[1]=$VCS_STATUS_NUM_UNSTAGED_DELETED
+      vcs_status[2]=$VCS_STATUS_NUM_STAGED_DELETED
+      vcs_status[3]=$VCS_STATUS_HAS_UNSTAGED
+      vcs_status[4]=$VCS_STATUS_HAS_STAGED
+      vcs_status[5]=$VCS_STATUS_HAS_UNTRACKED
+
+    for value in ${vcs_status[@]}; do
+      if [[ $value > 0 ]]; then
+        local git_status=1
         break
       fi
     done
 
-    if [[ $git_status == 1 ]]; then
-      local array=(4 1 5 7 6 3 2 0)
+    if [ $git_status ]; then
+      local simbols=''
+      
+      (( $vcs_status[1] )) ||
+      (( $vcs_status[2] )) && simbols+='-'
+      (( $vcs_status[3] )) && simbols+='!'
+      (( $vcs_status[4] )) && simbols+='+'
+      (( $vcs_status[5] )) && simbols+='?'
 
-      for i in ${array[@]}{; do
-        if [[ $vcs_status[$i] != 0 ]]; then
-          case $i in
-            1) local git_color=3; ;;  # commits behind
-            2) local git_color=0; ;;  # commits ahead
-            3) local git_color=0; ;;  # stashes
-            4) local git_color=3; ;;  # conflicted
-            5) local git_color=2; ;;  # staged
-            6) local git_color=1; ;;  # unstaged
-            7) local git_color=1; ;;  # untracked
-          esac
-          break
-        fi
-      done
+      local STATUS="%B%F{red}[${simbols}]%f%b"
     fi
-        
-    case $git_color in
-      3) RPROMPT+='%F{red}' ;;
-      2) RPROMPT+='%F{red}' ;;
-      1) RPROMPT+='%F{yellow}' ;;
-      0) RPROMPT+='%F{magenta}' ;;
-    esac
 
-    RPROMPT+='%B ('
-    RPROMPT+=${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%}
-    (( VCS_STATUS_STASHES )) && RPROMPT+=' *'
-    RPROMPT+=')%f%b'
-    (( VCS_STATUS_COMMITS_BEHIND )) && RPROMPT+='%F{magenta}  %f'
-    (( VCS_STATUS_COMMITS_AHEAD  )) && RPROMPT+='%F{green}  %f'
-    (( VCS_STATUS_NUM_CONFLICTED )) && RPROMPT+='%F{red}  %f'
+    if (( VCS_STATUS_HAS_CONFLICTED )); then
+      local color='red'
+      local icon='%F{red}✘ %f'
+    else
+      local color='magenta'
+    fi
+
+    PROMPT+="%F{white}at%f %B%F{${color}} "
+    PROMPT+="${VCS_STATUS_LOCAL_BRANCH}%f%b "
+    (( $git_status )) && PROMPT+=${STATUS}
+
+    (( VCS_STATUS_HAS_CONFLICTED )) && LAST_COMMIT+=$icon
+    LAST_COMMIT+="%B%F{${color}}@"
+    LAST_COMMIT+=${VCS_STATUS_COMMIT[1,7]}
+    LAST_COMMIT+='%f%b'
+  fi
+}
+
+function set_prompt() {
+  ZLE_RPROMPT_INDENT=0
+  PROMPT='%B%F{cyan}%2~%f%b '
+
+  if [[ $(pwd) == $HOME ]] || [[ $(pwd) == '/' ]]; then
+    PROMPT+='%F{%(?.magenta.red)}❯ %f'
+    git_sign
+    elapsed_time
+
+  else
+    LAST_COMMIT=''
+    git_prompt
+
+    RPROMPT=%{$'\e[1A'%}"${LAST_COMMIT}"%{$'\e[1B'%}
+
+    PROMPT+=$'\n'
+    PROMPT+='%F{%(?.yellow.red)}λ%f '
   fi
 
   setopt no_prompt_{bang,subst} prompt_percent
@@ -216,6 +247,7 @@ add-zsh-hook precmd set_prompt
 
 # --==[ Exports ]==--
 export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/.resources/scripts"
 
 # --==[ Autostart ]==--
 # neofetch
