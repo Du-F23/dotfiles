@@ -209,7 +209,7 @@ function git_prompt() {
       local color='magenta'
     fi
 
-    PROMPT+="%F{white}at%f %B%F{${color}} "
+    PROMPT+="%F{white}at%f %B%F{magenta} "
     PROMPT+="${VCS_STATUS_LOCAL_BRANCH}%f%b "
     (( $git_status )) && PROMPT+=${STATUS}
 
