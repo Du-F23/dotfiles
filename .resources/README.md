@@ -35,6 +35,7 @@
   - lightdm-gtk-greeter
 - sddm
 - *ly
+- xorg-xinit (startx)
 
 #### Terminal & Shell
 
@@ -67,6 +68,7 @@
 
 #### Code Editor
 
+- emacs
 - vim
 - neovim (vimscript)
   - *neovim-plug-git
