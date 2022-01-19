@@ -1,8 +1,5 @@
 # --==[ Qtile Config ]==--
 
-# noqa: F401
-from typing import List
-
 # Import modules
 from modules.keys import keys
 from modules.groups import groups
