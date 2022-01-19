@@ -114,9 +114,11 @@ function preexec() {
 function elapsed_time() {
   function precmd() {
     RPROMPT=''
+    ELAPSED=''
     if [ $timer ]; then
       local now=$(($(date +%s%0N) / 1000000))
       local ms=$(($now - $timer))
+      local seconds=0
       local time=''
 
       if (( $ms > 99 )); then
@@ -141,7 +143,7 @@ function elapsed_time() {
             fi
 
           else
-            (( $seconds > 19 )) && time=($seconds's')
+            time=($seconds's')
           fi
 
         fi
@@ -149,7 +151,7 @@ function elapsed_time() {
         # time=($ms'ms')
       fi
 
-      RPROMPT+="%B%F{yellow}${time}%f%b"
+      (( $seconds > 14 )) && ELAPSED+="%B%F{yellow}took ${time}%f%b"
       unset timer
     fi
   }
@@ -199,7 +201,7 @@ function git_prompt() {
       (( $vcs_status[4] )) && simbols+='+'
       (( $vcs_status[5] )) && simbols+='?'
 
-      local STATUS="%B%F{red}[${simbols}]%f%b"
+      local STATUS="%B%F{red}[${simbols}]%f%b "
     fi
 
     if (( VCS_STATUS_HAS_CONFLICTED )); then
@@ -213,28 +215,37 @@ function git_prompt() {
     PROMPT+="${VCS_STATUS_LOCAL_BRANCH}%f%b "
     (( $git_status )) && PROMPT+=${STATUS}
 
-    (( VCS_STATUS_HAS_CONFLICTED )) && LAST_COMMIT+=$icon
-    LAST_COMMIT+="%B%F{${color}}@"
-    LAST_COMMIT+=${VCS_STATUS_COMMIT[1,7]}
-    LAST_COMMIT+='%f%b'
-  fi
+    (( VCS_STATUS_HAS_CONFLICTED )) && RIGHT+=$icon
+    RIGHT+="%B%F{${color}}@"
+    RIGHT+=${VCS_STATUS_COMMIT[1,7]}
+    RIGHT+='%f%b'
+
+    (( VCS_STATUS_COMMITS_BEHIND )) ||
+    (( VCS_STATUS_COMMITS_AHEAD  )) ||
+    (( VCS_STATUS_STASHES )) && RIGHT+=' '
+
+    (( VCS_STATUS_COMMITS_BEHIND )) && RIGHT+='%F{yellow}%f'
+    (( VCS_STATUS_COMMITS_AHEAD )) && RIGHT+='%F{yellow}%f'
+    (( VCS_STATUS_STASHES )) && RIGHT+='%B%F{yellow}*%f%b'
+ fi
 }
 
 function set_prompt() {
   ZLE_RPROMPT_INDENT=0
   PROMPT='%B%F{cyan}%2~%f%b '
-  # RPROMPT=''
+  elapsed_time
 
   if [[ $(pwd) == $HOME ]] || [[ $(pwd) == '/' ]]; then
     PROMPT+='%F{%(?.magenta.red)}❯ %f'
+
+    RPROMPT+=${ELAPSED}
     git_sign
-    elapsed_time
-
   else
-    LAST_COMMIT=''
+    RIGHT=''
     git_prompt
+    PROMPT+=${ELAPSED}
 
-    RPROMPT=%{$'\e[1A'%}"${LAST_COMMIT}"%{$'\e[1B'%}
+    RPROMPT=%{$'\e[1A'%}"${RIGHT}"%{$'\e[1B'%}
 
     PROMPT+=$'\n'
     PROMPT+='%F{%(?.yellow.red)}λ%f '
