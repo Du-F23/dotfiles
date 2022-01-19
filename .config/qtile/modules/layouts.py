@@ -50,6 +50,6 @@ floating_layout = layout.Floating(
         Match(title = 'pinentry'),
     ],
     border_normal = color[8],
-    border_focus = color[5],
-    border_width = 0,
+    border_focus = color[7],
+    border_width = 1,
 )
