@@ -63,26 +63,11 @@ alias usage='du -sh'
 # compinit
 
 # --==[ Plugins ]==--
-# Highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Git Status
 source /usr/share/gitstatus/gitstatus.prompt.zsh
-
-# --==[ Highlighting ]==--
-typeset -A ZSH_HIGHLIGHT_STYLES
-  ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
-  ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
-  ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
-  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
-  ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
-  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
-  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
-  ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 
 # --==[ Key Bindings ]==--
 bindkey '^ ' autosuggest-accept                    # ctrl + space
@@ -225,7 +210,7 @@ function git_prompt() {
     (( VCS_STATUS_STASHES )) && RIGHT+=' '
 
     (( VCS_STATUS_COMMITS_BEHIND )) && RIGHT+='%F{yellow}%f'
-    (( VCS_STATUS_COMMITS_AHEAD )) && RIGHT+='%F{yellow}%f'
+    (( VCS_STATUS_COMMITS_AHEAD  )) && RIGHT+='%F{yellow}%f'
     (( VCS_STATUS_STASHES )) && RIGHT+='%B%F{yellow}*%f%b'
  fi
 }
@@ -256,6 +241,25 @@ function set_prompt() {
 
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
 add-zsh-hook precmd set_prompt
+
+# --==[ Plugins ]==--
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# --==[ Highlighting ]==--
+typeset -A ZSH_HIGHLIGHT_STYLES
+  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
+  ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
+  ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
+  ZSH_HIGHLIGHT_STYLES[function]='fg=cyan'
+  ZSH_HIGHLIGHT_STYLES[command]='fg=green'
+  ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[path]='fg=blue,underline'
+  ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta'
+  ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # --==[ Exports ]==--
 export PATH="${PATH}:${HOME}/.local/bin"
