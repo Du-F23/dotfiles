@@ -3,8 +3,8 @@
 from libqtile.config import Group, Key, Match
 from libqtile.lazy import lazy
 
+from ..utils.settings import mod
 from .keys import keys
-from .settings import mod
 
 # Workspaces
 main = [

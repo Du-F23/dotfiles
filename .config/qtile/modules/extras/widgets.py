@@ -2,8 +2,9 @@
 
 from libqtile import widget
 
-from .settings import backlight, city, font, location, net
-from .colors import color
+from ..utils.settings import city, font, location
+from ..utils.settings import backlight, net
+from ..utils.colors import color
 
 icon_font = 'SauceCodePro Nerd Font'
 

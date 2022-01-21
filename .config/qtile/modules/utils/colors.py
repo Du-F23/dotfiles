@@ -1,10 +1,19 @@
 # --==[ Colors ]==--
 
+from os import path
 import json
-from .settings import scheme_path
 
-# Import a JSON file
-with open(scheme_path) as file:
+from .settings import colorscheme
+
+# Directory
+color_path = path.join(
+    path.expanduser('~'),
+    '.config/qtile/colors/',
+    colorscheme + '.json'
+)
+
+# Import JSON file
+with open(color_path) as file:
     colors = json.load(file)
     file.close()
 

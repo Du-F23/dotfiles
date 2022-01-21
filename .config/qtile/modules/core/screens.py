@@ -3,8 +3,8 @@
 from libqtile import bar
 from libqtile.config import Screen
 
-from .settings import wallpaper
-from .widgets import widgets
+from ..utils.settings import wallpaper
+from ..extras.widgets import widgets
 
 screens = [
     Screen(
