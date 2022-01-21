@@ -453,7 +453,7 @@ def wttr(bg, fg):
   # wttr(2)
 
 # Layouts
-main = [
+widgets = [
     padding(),
     *logo(color[8], color[12]),
     sep(color[8]),
@@ -481,4 +481,16 @@ main = [
     padding(),
 ]
 
-widgets = main
+widgets_tmp = [
+    padding(),
+    *groups(None),
+    spacer(None),
+
+    *updates(color[8], color[17], color[3]),
+    sep('#'),
+    *wifi(color[8], color[17], color[4]),
+
+    sep(color[8]),
+    quick_exit(color[8], color[1]),
+    padding(),
+]
