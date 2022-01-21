@@ -6,14 +6,14 @@ import json
 from .settings import colorscheme
 
 # Directory
-color_path = path.join(
+color_file = path.join(
     path.expanduser('~'),
     '.config/qtile/colors/',
     colorscheme + '.json'
 )
 
 # Import JSON file
-with open(color_path) as file:
+with open(color_file) as file:
     colors = json.load(file)
     file.close()
 
