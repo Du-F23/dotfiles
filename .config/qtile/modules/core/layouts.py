@@ -7,7 +7,7 @@ from ..utils.colors import color
 
 # Layout config
 def config(layout_name):
-    config = {
+    default = {
         'border_normal': color[8],
         'border_focus': color[5],
         'border_width': 1,
@@ -15,20 +15,29 @@ def config(layout_name):
         'margin': 9,
         'single_margin': 9,
     }
+
     if layout_name == 'bsp':
-        config['fair'] = False
-        config['grow_amount'] = 3
-        config['lower_right'] = False
-
+        add_config = {
+            'fair': False,
+            'grow_amount': 3,
+            'lower_right': False,
+        }
     elif layout_name == 'xmonad':
-        config['min_ratio'] = 0.30
-        config['max_ratio'] = 0.70
-        config['change_ratio'] = 0.02
-
+        add_config = {
+            'min_ratio': 0.30,
+            'max_ratio': 0.70,
+            'change_ratio': 0.02,
+        }
     elif layout_name == 'stack':
-        config['border_width'] = 0
-        config['num_stacks'] = 1
-    return config
+        add_config = {
+            'border_width': 0,
+            'num_stacks': 1,
+        }
+    else:
+        add_config = {}
+
+    default.update(add_config)
+    return default
 
 layouts = [
     # layout.Max(),
