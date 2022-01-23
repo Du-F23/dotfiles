@@ -6,90 +6,82 @@ from libqtile.lazy import lazy
 from ..utils.settings import mod
 from .keys import keys
 
+# Icons & Labels
+text = ['term', 'www', 'dev', 'sys', 'vbox', 'doc', 'vid', 'mus', 'chat']
+kanji = ['一', '二', '三', '四', '五', '六', '七', '八', '九']
+icon = ['', '', '', '', '', '', '辶', '', '切']
+number = [i for i in range(9)]
+circle = ['●'] * 9
+
+label = circle
+
 # Workspaces
-main = [
+groups = [
     Group('1',
-        label = '',
+        label = label[0],
         layout = 'monadtall',
         matches = [
-            Match(title = 'nvim')
+          Match(title = 'nvim')
         ]),
 
     Group('2',
-        label = '',
+        label = label[1],
         layout = 'stack',
         matches = [
-            Match(wm_class = 'firefox'),
-            Match(wm_class = 'chromium'),
+          Match(wm_class = ['firefox', 'chromium', 'qutebrowser'])
         ]),
 
     Group('3',
-        label = '',
+        label = label[2],
         layout = 'monadtall',
         matches = [
-            Match(wm_class = 'code'),
-            Match(wm_class = 'vscodium'),
+          Match(wm_class = ['code', 'vscodium'])
         ]),
 
     Group('4',
-        label = '',
+        label = label[3],
         layout = 'monadtall',
         matches = [
-            Match(wm_class = 'thunar'),
-            Match(title = 'ranger'),
+          Match(wm_class = 'thunar'),
+          Match(title = 'ranger'),
         ]),
 
     Group('5',
-        label = '',
+        label = label[4],
         layout = 'stack',
         matches = [
-            Match(wm_class = 'VirtualBox Manager')
+          Match(wm_class = 'VirtualBox Manager')
         ]),
 
     Group('6',
-        label = '',
-        layout = 'stack',
+        label = label[5],
+        layout = 'monadtall',
         matches = [
-            Match(title = 'GIMP Startup')
+          Match(wm_class = ['evince', 'libreoffice'])
         ]),
 
     Group('7',
-        label = '',
+        label = label[6],
         layout = 'monadtall',
         matches = [
-            Match(wm_class = 'evince'),
-            Match(wm_class = 'libreoffice'),
+          Match(wm_class = ['obs', 'qBittorrent'])
         ]),
 
     Group('8',
-        label = '',
-        layout = 'monadtall',
+        label = label[7],
+        layout = 'stack',
         matches = [
-            Match(wm_class = 'obs'),
-            Match(wm_class = 'qBittorrent'),
+          Match(wm_class = ['spotify', 'Mplayer', 'vlc'])
         ]),
 
     Group('9',
-        label = '',
-        layout = 'stack',
+        label = label[8],
+        layout = 'monadtall',
         matches = [
-            Match(wm_class = 'spotify'),
-            Match(wm_class = 'Mplayer'),
-            Match(wm_class = 'vlc'),
-        ]),
-
-    Group('0',
-        label = '',
-        layout = 'bsp',
-        matches = [
-            Match(wm_class = 'telegram-desktop'),
-            Match(wm_class = 'discord'),
-            Match(wm_class = 'caprine'),
-            Match(title = 'WhatsApp Web'),
+          Match(wm_class = ['telegram-desktop', 'discord', 'caprine']),
+          Match(title = 'WhatsApp Web'),
         ]),
 ]
-
-groups = main
 
 # Navigation
 for i in groups:
