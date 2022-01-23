@@ -10,4 +10,3 @@ from .core.mouse import mouse
 # Extras
 from .extras.widgets import widget_defaults
 from .extras.widgets import extension_defaults
-from .extras.autostart import autostart
