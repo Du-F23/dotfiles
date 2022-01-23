@@ -188,9 +188,10 @@ def disk(bg, fg, icon_fg):
 def groups(bg):
     return [
         widget.GroupBox(
-            **font_config(10),
+            **font_config(15), # 12
             background = bg,
-            blockwidth = 2,
+            blockwidth = 0,
+            padding = 4, # 1
             margin_y = 3,
             rounded = True,
             hide_unused = False,
