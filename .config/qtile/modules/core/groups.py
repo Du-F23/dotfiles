@@ -21,65 +21,65 @@ groups = [
         label = label[0],
         layout = 'monadtall',
         matches = [
-          Match(title = 'nvim')
+            Match(title = 'nvim')
         ]),
 
     Group('2',
         label = label[1],
         layout = 'stack',
         matches = [
-          Match(wm_class = ['firefox', 'chromium', 'qutebrowser'])
+            Match(wm_class = ['firefox', 'chromium', 'qutebrowser'])
         ]),
 
     Group('3',
         label = label[2],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = ['code', 'vscodium', 'emacs'])
+            Match(wm_class = ['code', 'vscodium', 'emacs'])
         ]),
 
     Group('4',
         label = label[3],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = 'thunar'),
-          Match(title = 'ranger'),
+            Match(wm_class = 'thunar'),
+            Match(title = 'ranger'),
         ]),
 
     Group('5',
         label = label[4],
         layout = 'stack',
         matches = [
-          Match(wm_class = 'VirtualBox Manager')
+            Match(wm_class = 'VirtualBox Manager')
         ]),
 
     Group('6',
         label = label[5],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = ['evince', 'libreoffice'])
+            Match(wm_class = ['evince', 'libreoffice'])
         ]),
 
     Group('7',
         label = label[6],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = ['obs', 'qBittorrent'])
+            Match(wm_class = ['obs', 'qBittorrent'])
         ]),
 
     Group('8',
         label = label[7],
         layout = 'stack',
         matches = [
-          Match(wm_class = ['spotify', 'Mplayer', 'vlc'])
+            Match(wm_class = ['spotify', 'Mplayer', 'vlc'])
         ]),
 
     Group('9',
         label = label[8],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = ['telegram-desktop', 'discord', 'caprine']),
-          Match(title = 'WhatsApp Web'),
+            Match(wm_class = ['telegram-desktop', 'discord', 'caprine']),
+            Match(title = 'WhatsApp Web'),
         ]),
 ]
 
