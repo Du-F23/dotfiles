@@ -47,6 +47,6 @@ set.mouse = 'i'
 set.cursorline = false
 
 -- Spaces & Tabs
-set.tabstop = 4
-set.shiftwidth = 4
+set.tabstop = 2
+set.shiftwidth = 2
 set.expandtab = true
