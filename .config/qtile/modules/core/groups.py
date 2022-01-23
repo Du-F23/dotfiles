@@ -35,7 +35,7 @@ groups = [
         label = label[2],
         layout = 'monadtall',
         matches = [
-          Match(wm_class = ['code', 'vscodium'])
+          Match(wm_class = ['code', 'vscodium', 'emacs'])
         ]),
 
     Group('4',
