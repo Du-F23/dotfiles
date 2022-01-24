@@ -4,7 +4,7 @@ from libqtile import bar
 from libqtile.config import Screen
 
 from ..utils.settings import wallpaper
-from ..extras.widgets import widgets
+from ..extras.bar import widgets
 
 screens = [
     Screen(
