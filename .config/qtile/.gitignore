@@ -1,6 +1,6 @@
 __pycache__
 _dev
-modules/extras/settings.py
+modules/utils/settings.py
 
 modules/__pycache__
 modules/core/__pycache__
