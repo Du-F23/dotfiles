@@ -9,11 +9,11 @@ from .keys import keys
 # Icons & Labels
 text = ['term', 'www', 'dev', 'sys', 'vbox', 'doc', 'vid', 'mus', 'chat']
 kanji = ['一', '二', '三', '四', '五', '六', '七', '八', '九']
-icon = ['', '', '', '', '', '', '辶', '', '切']
-number = [i for i in range(9)]
-circle = ['●'] * 9
+icons = ['', '', '', '', '', '', '辶', '', '切']
+numbers = [i for i in range(9)]
+circles = ['●'] * 9
 
-label = circle
+label = circles
 
 # Workspaces
 groups = [
