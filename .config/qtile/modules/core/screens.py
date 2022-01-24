@@ -11,19 +11,12 @@ screens = [
         wallpaper = wallpaper,
         wallpaper_mode = 'fill',
         top = bar.Bar(
-            # Source in widgets.py
             widgets,
-
-            # Bar Size
-            20,
-
-            # Background Color
+            size = 20,
             background = "#00000000",
-
-            # Margin
+            border_color = '#000000',
+            border_width = 0,
             margin = [9, 15, 0, 15],
-
-            # Transparency
             opacity = 1,
         ),
     ),
