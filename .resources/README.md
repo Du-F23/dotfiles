@@ -102,6 +102,7 @@
 #### Browser
 
 - w3m
+- qutebrowser
 - firefox
 - opera
   - opera-ffmpeg-codecs
