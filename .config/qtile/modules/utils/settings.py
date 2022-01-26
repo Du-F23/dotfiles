@@ -6,7 +6,7 @@ terminal = 'st'
 browser = 'firefox'
 file_manager = 'thunar'
 font = 'SauceCodePro Nerd Font Medium'
-wallpaper = '~/Downloads/amanecer.jpg'
+wallpaper = '~/.config/qtile/amanecer.jpg'
 
 # Weather
 location = {'Mexico': 'Mexico'}
