@@ -2,6 +2,15 @@
 
 # Import modules
 from modules import *
+from libqtile import hook
+
+import os
+import subprocess
+
+@hook.subscribe.startup_once
+def startup():
+    subprocess.Popen(['.config/qtile/autostart.sh'])
+
 
 # Config
 dgroups_key_binder = None

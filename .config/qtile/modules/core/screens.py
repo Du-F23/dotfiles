@@ -12,7 +12,7 @@ screens = [
         wallpaper_mode = 'fill',
         top = bar.Bar(
             widgets,
-            size = 20,
+            size = 15,
             background = "#00000000",
             border_color = '#000000',
             border_width = 0,

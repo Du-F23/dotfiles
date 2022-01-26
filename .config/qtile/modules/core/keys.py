@@ -60,7 +60,7 @@ keys = [
     Key([mod, 'mod1'], 'q', lazy.spawn('kill -9 -1')),
 
     # Terminal
-    Key([mod], 'Return', lazy.spawn(terminal)),
+    Key([mod], 'Return', lazy.spawn('alacritty')),
 
     # Dmenu
     Key([mod], 'd', lazy.spawn('dmenu_run')),
@@ -70,22 +70,26 @@ keys = [
     Key([mod, 'shift'], 'r', lazy.spawn('rofi -show')),
 
     # Browser
-    Key([mod], 'b', lazy.spawn(browser)),
+    Key([mod], 'b', lazy.spawn('google-chrome-stable')),
 
     # File Manager
     Key([mod], 'e', lazy.spawn(file_manager)),
-    
+
+    # Screenshot
+    Key([mod], "s", lazy.spawn('scrot')),
+    Key([mod, "shift"], "s", lazy.spawn('scrot -s')),
+
     # Volume
     Key([], 'XF86AudioMute', lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')),
-    Key([], 'XF86AudioLowerVolume', lazy.spawn('pulseaudio-ctl down +5%')),
-    Key([], 'XF86AudioRaiseVolume', lazy.spawn('pulseaudio-ctl up +5%')),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%')),
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ +5%')),
 
     # Brightness
-    Key([mod], 'XF86AudioLowerVolume', lazy.spawn('brightnessctl set 5%-')),
-    Key([mod], 'XF86AudioRaiseVolume', lazy.spawn('brightnessctl set +5%')),
+    Key([], 'XF86MonBrightnessUp', lazy.spawn('brightnessctl set +10%')),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('brightnessctl set 10%-')),
 
     # Player
-    Key([mod], 'XF86AudioPlay', lazy.spawn('playerctl play-pause')),
-    Key([mod], 'XF86AudioPrev', lazy.spawn('playerctl previous')),
-    Key([mod], 'XF86AudioNext', lazy.spawn('playerctl next')),
+    Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause')),
+    Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous')),
+    Key([], 'XF86AudioNext', lazy.spawn('playerctl next')),
 ]
